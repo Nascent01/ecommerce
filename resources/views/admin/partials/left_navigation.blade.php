@@ -17,7 +17,7 @@
         image='<i class="fas fa-user-shield text-dark	"></i>'
         link="#" active="0"/>
 
-        <x-admin.left-navigation.nav-item title="Roles"
+        <x-admin.left-navigation.nav-item title="Permissions"
         image='<i class="fas fa-key text-dark	"></i>'
         link="#" active="0"/>
 
