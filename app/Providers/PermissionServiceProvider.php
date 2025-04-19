@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Repositories\Auth\Permission\PermissionRepository;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Auth\Access\Response;
 
 class PermissionServiceProvider extends ServiceProvider
 {
@@ -34,7 +34,7 @@ class PermissionServiceProvider extends ServiceProvider
             $gate->define($permission->name, function ($user) use ($permission) {
                 return $user->hasRole($permission->roles)
                     ? Response::allow()
-                    : Response::deny("Permission '{$permission->name}' needed.");
+                    : Response::deny();
             });
         }
     }
