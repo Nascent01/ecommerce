@@ -8,7 +8,7 @@ class RoleConstant
     const ROLE_USER = 'user';
 
     const ROLES_ARRAY = [
-        self::ROLE_ADMIN,
-        self::ROLE_USER,
+        self::ROLE_ADMIN => 'Admin role - highest level of access',
+        self::ROLE_USER => 'User role - standard level of access',
     ];
 }
