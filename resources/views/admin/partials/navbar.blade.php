@@ -4,11 +4,11 @@
 
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <!-- Removed the old user dropdown -->
             </div>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav"
+                        style="font-size: 1.2rem;">
                         <div class="sidenav-toggler-inner">
                             <i class="sidenav-toggler-line"></i>
                             <i class="sidenav-toggler-line"></i>
@@ -20,9 +20,14 @@
                 <li class="nav-item dropdown pe-2 d-flex align-items-center ml-3">
                     <a href="javascript:;" class="nav-link text-body p-0" id="userDropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user cursor-pointer"></i>
+                        <i class="fa fa-user cursor-pointer" style="font-size: 1.2rem;"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownMenuButton">
+                        <li>
+                            <span>
+                                <strong class="dropdown-item-text">Welcome, {{ Auth::user()->name }}</strong>
+                            </span>
+                        </li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
