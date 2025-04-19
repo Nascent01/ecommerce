@@ -3,6 +3,9 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Auth\Permission\Permission;
+use App\Models\Auth\Role\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,5 +47,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRoleByName($roleName)
+    {
+        return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    public function hasRole($roles)
+    {
+        if ($roles instanceof \Illuminate\Database\Eloquent\Collection) {
+            return $this->roles()->whereIn('id', $roles->pluck('id'))->exists();
+        }
     }
 }
