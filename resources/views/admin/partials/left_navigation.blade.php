@@ -11,7 +11,7 @@
 
         <x-admin.left-navigation.nav-item title="Users"
         image='<i class="fas fa-users text-dark"></i>'
-        :link="route('admin.users.index')" active="1"/>
+        :link="route('admin.users.index')" :active="str_contains($routeName, 'admin.users') ? 1 : 0"/>
 
         <x-admin.left-navigation.nav-item title="Roles"
         image='<i class="fas fa-user-shield text-dark	"></i>'
