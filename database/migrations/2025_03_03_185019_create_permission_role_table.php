@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Auth\Permission;
-use App\Models\Auth\Role;
+use App\Models\Auth\Permission\Permission;
+use App\Models\Auth\Role\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

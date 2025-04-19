@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Auth\Role;
+use App\Models\Auth\Role\Role;
 use App\Models\User\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
