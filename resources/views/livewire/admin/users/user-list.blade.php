@@ -56,9 +56,9 @@
                                     <td class="text-center">{{ $user->created_at }}</td>
                                     <td class="text-center">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-sm btn-primary"
-                                                style="margin-right: 8px;"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-sm btn-danger"><i
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger"><i
                                                     class="fas fa-trash"></i></button>
                                         </div>
                                     </td>
