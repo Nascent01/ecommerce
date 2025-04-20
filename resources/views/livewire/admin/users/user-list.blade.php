@@ -10,7 +10,6 @@
                     <div class="col-md-5">
                         <label for="search-name" class="form-label"><i class="fas fa-user me-1"></i> Name</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
                             <input wire:model.live="name" class="form-control" id="search-name"
                                 placeholder="Search by name">
                         </div>
@@ -18,7 +17,6 @@
                     <div class="col-md-5">
                         <label for="search-email" class="form-label"><i class="fas fa-envelope me-1"></i> Email</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
                             <input wire:model.live="email" class="form-control" id="search-email"
                                 placeholder="Search by email">
                         </div>
@@ -67,7 +65,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">No users found</td>
+                                    <td colspan="5" class="text-center text-danger">No results found</td>
                                 </tr>
                             @endforelse
                         </tbody>

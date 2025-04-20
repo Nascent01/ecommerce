@@ -7,10 +7,14 @@ use Livewire\Component;
 
 class UserList extends Component
 {
+    public $name, $email;
+
     public function render()
     {
+        $userQb = User::fillter($this->name, $this->email);
+
         return view('livewire.admin.users.user-list', [
-            'users' => User::all(),
+            'users' => $userQb->latest()->paginate(10),
         ]);
     }
 }

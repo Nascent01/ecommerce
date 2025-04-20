@@ -65,4 +65,17 @@ class User extends Authenticatable
             return $this->roles()->whereIn('id', $roles->pluck('id'))->exists();
         }
     }
+
+    public function scopeFillter($query, $name, $email)
+    {
+        if ($name) {
+            $query->where('name', 'like', "%{$name}%");
+        }
+
+        if ($email) {
+            $query->where('email', 'like', "%{$email}%");
+        }
+
+        return $query;
+    }
 }
