@@ -28,6 +28,10 @@
                                 <strong class="dropdown-item-text">Welcome, {{ Auth::user()->name }}</strong>
                             </span>
                         </li>
+                        <li>
+                            <div style="height: 1px; background-color: #e0e0e0;">
+                            </div>
+                        </li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
