@@ -88,5 +88,5 @@
         </div>
     </div>
 
-    @include('livewire.admin.users.modals.assaign-role-modal')
+    @include('livewire.admin.users._assign_role_modal')
 </div>
