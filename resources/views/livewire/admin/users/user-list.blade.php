@@ -80,9 +80,11 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div class="py-3 mx-1">
-                        <x-pagination :items="$users" position="justify-content-end" />
-                    </div>
+                    @if ($users->hasPages())
+                        <div class="py-3 mx-1">
+                            <x-pagination :items="$users" position="justify-content-end" />
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
