@@ -23,7 +23,8 @@
                     </div>
                     <div class="col-md-2 d-flex flex-column justify-content-end">
                         <label class="form-label invisible">Reset</label>
-                        <button class="btn btn-outline-secondary mt-0-2" type="reset">
+                        <button wire:click="clearFilters()" class="btn btn-outline-secondary mt-0-2 shadow-none"
+                            type="reset">
                             <i class="fas fa-undo me-2"></i>Reset
                         </button>
                     </div>
@@ -37,7 +38,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive card">
-                    <table class="table table-bordered margin-bottom-0">
+                    <div class="py-3 mx-1 justify-content-end d-flex">
+                        <a href="#" class="btn btn-primary shadow-none mb-0">
+                            <i class="fas fa-user me-2"></i>Add User
+                        </a>
+                    </div>
+                    <table class="table table-bordered mb-0">
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center" scope="col">ID</th>
@@ -53,12 +59,16 @@
                                     <th class="text-center" scope="row">{{ $user->id }}</th>
                                     <td class="text-center">{{ $user->name }}</td>
                                     <td class="text-center">{{ $user->email }}</td>
-                                    <td class="text-center">{{ $user->created_at }}</td>
+                                    <td class="text-center">
+                                        {{ Carbon\Carbon::parse($user->created_at)->format('d.m.Y') }}</td>
                                     <td class="text-center">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-primary">
+                                            <button type="button" class="btn btn-primary shadow-none">
                                                 <i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i
+                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                                                class="btn btn-info shadow-none">
+                                                <i class="fas fa-user-plus"></i></button>
+                                            <button type="button" class="btn btn-danger shadow-none"><i
                                                     class="fas fa-trash"></i></button>
                                         </div>
                                     </td>
@@ -70,8 +80,13 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="py-3 mx-1">
+                        <x-pagination :items="$users" position="justify-content-end" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    @include('livewire.admin.users.modals.assaign-role-modal')
 </div>

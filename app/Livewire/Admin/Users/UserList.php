@@ -9,6 +9,11 @@ class UserList extends Component
 {
     public $name, $email;
 
+    public function clearFilters()
+    {
+      $this->reset();
+    }
+
     public function render()
     {
         $userQb = User::fillter($this->name, $this->email);
