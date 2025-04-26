@@ -39,8 +39,11 @@
     <script src="{{ asset('themes/custom/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('themes/custom/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('themes/custom/js/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ asset('themes/custom/js/plugins/jquery-3.7.1.js') }}"></script>
 
     @livewireScripts
+
+    @yield('scripts')
 
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
