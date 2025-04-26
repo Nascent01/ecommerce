@@ -24,6 +24,6 @@ class Pagination extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pagination');
+        return view('components.pagination.pagination');
     }
 }

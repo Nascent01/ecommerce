@@ -18,6 +18,9 @@
                                 {{ $role->name }}
                             </label>
                         </div>
+                        @error('selectedRoles')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     @endforeach
                 </div>
                 <div class="modal-footer">

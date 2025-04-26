@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class FlashMessage extends Component
 {
+    public $type, $message, $icon, $color;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($type, $message, $icon, $color)
     {
-        //
+        $this->type = $type;
+        $this->message = $message;
+        $this->icon = $icon;
+        $this->color = $color;
     }
 
     /**
@@ -21,6 +26,6 @@ class FlashMessage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.flash-message');
+        return view('components.flash-message.flash-message');
     }
 }
