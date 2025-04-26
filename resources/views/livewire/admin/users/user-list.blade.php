@@ -46,10 +46,22 @@
                     <table class="table table-bordered mb-0">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center" scope="col">ID</th>
-                                <th class="text-center" scope="col">Name</th>
-                                <th class="text-center" scope="col">Email</th>
-                                <th class="text-center" scope="col">Created</th>
+                                <th wire:click.prevent="sortBy('id')" class="text-center cursor-pointer" scope="col">
+                                    ID
+                                    <x-sort-indicator field="id" :sort-field="$sortField" :sort-direction="$sortDirection" />
+                                </th>
+                                <th wire:click.prevent="sortBy('name')" class="text-center cursor-pointer"
+                                    scope="col">Name
+                                    <x-sort-indicator field="name" :sort-field="$sortField" :sort-direction="$sortDirection" />
+                                </th>
+                                <th wire:click.prevent="sortBy('email')" class="text-center cursor-pointer"
+                                    scope="col">Email
+                                    <x-sort-indicator field="email" :sort-field="$sortField" :sort-direction="$sortDirection" />
+                                </th>
+                                <th wire:click.prevent="sortBy('created_at')" class="text-center cursor-pointer"
+                                    scope="col">Created
+                                    <x-sort-indicator field="created_at" :sort-field="$sortField" :sort-direction="$sortDirection" />
+                                </th>
                                 <th class="text-center" scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -65,7 +77,8 @@
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary shadow-none">
                                                 <i class="fas fa-edit"></i></button>
-                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                                            <button wire:click="openUserRolesModal({{ $user->id }})"
+                                                data-bs-toggle="modal" data-bs-target="#assignRolesModal" type="button"
                                                 class="btn btn-info shadow-none">
                                                 <i class="fas fa-user-plus"></i></button>
                                             <button type="button" class="btn btn-danger shadow-none"><i
