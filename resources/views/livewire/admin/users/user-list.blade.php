@@ -39,7 +39,7 @@
             <div class="col-lg-12">
                 @include('partials.flash_messages')
                 <div class="table-responsive card">
-                    <div class="py-3 mx-1 justify-content-end d-flex">
+                    <div class="py-3 mx-3 justify-content-start d-flex">
                         <a href="{{ route('admin.users.create') }}" class="btn btn-primary shadow-none mb-0">
                             <i class="fas fa-user me-2"></i>Add User
                         </a>
@@ -104,7 +104,7 @@
                         </tbody>
                     </table>
                     @if ($users->hasPages())
-                        <div class="py-3 mx-1">
+                        <div class="py-3 mx-3">
                             <x-pagination :items="$users" position="justify-content-end" />
                         </div>
                     @endif

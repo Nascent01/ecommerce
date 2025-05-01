@@ -19,7 +19,7 @@ class UserList extends Component
 
     public function clearFilters()
     {
-      $this->reset();
+        $this->reset();
     }
 
     public function openUserRolesModal(User $user)

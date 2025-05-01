@@ -25,7 +25,7 @@
                         class="btn btn-success btn-sm px-4 shadow-none">{{ $user->id ? 'Update' : 'Save' }}</button>
                 </div>
                 <div class="col-auto">
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-info btn-sm px-4 shadow-none">Cancel</a>
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-info btn-sm px-4 shadow-none">Go back</a>
                 </div>
             </div>
         </form>
