@@ -49,19 +49,20 @@
                             <tr>
                                 <th wire:click.prevent="sortBy('id')" class="text-center cursor-pointer" scope="col">
                                     ID
-                                    {{-- <x-sort-indicator field="id" :sort-field="$sortField" :sort-direction="$sortDirection" /> --}}
+                                    <x-sort-indicator field="id" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th wire:click.prevent="sortBy('name')" class="text-center cursor-pointer"
                                     scope="col">Name
-                                    {{-- <x-sort-indicator field="name" :sort-field="$sortField" :sort-direction="$sortDirection" /> --}}
+                                    <x-sort-indicator field="name" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th wire:click.prevent="sortBy('email')" class="text-center cursor-pointer"
                                     scope="col">Email
-                                    {{-- <x-sort-indicator field="email" :sort-field="$sortField" :sort-direction="$sortDirection" /> --}}
+                                    <x-sort-indicator field="email" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th wire:click.prevent="sortBy('created_at')" class="text-center cursor-pointer"
-                                    scope="col">Created
-                                    {{-- <x-sort-indicator field="created_at" :sort-field="$sortField" :sort-direction="$sortDirection" /> --}}
+                                    scope="col">
+                                    Created
+                                    <x-sort-indicator field="created_at" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th class="text-center" scope="col">Actions</th>
                             </tr>

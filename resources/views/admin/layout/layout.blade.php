@@ -53,6 +53,30 @@
             };
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
+
+        $(document).ready(function() {
+            setupAlerts();
+
+            $(document).on('closeModal', function() {
+                setTimeout(function() {
+                    setupAlerts();
+                }, 100);
+            });
+        });
+
+        function setupAlerts() {
+            $('.alert').each(function() {
+                var $alert = $(this);
+
+                if (!$alert.data('timeout-set')) {
+                    setTimeout(function() {
+                        $alert.slideUp();
+                    }, 3000);
+
+                    $alert.data('timeout-set', true);
+                }
+            });
+        }
     </script>
 
     <!-- GitHub buttons -->

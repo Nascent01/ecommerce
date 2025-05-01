@@ -25,6 +25,6 @@ class SortIndicator extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sort-indicator.sort-indicator');
+        return view('components.sort-indicator');
     }
 }
