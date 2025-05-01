@@ -26,6 +26,6 @@ class FlashMessage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.flash-message.flash-message');
+        return view('components.flash-message');
     }
 }
