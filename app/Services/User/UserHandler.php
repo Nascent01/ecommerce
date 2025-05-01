@@ -7,40 +7,22 @@ use Illuminate\Support\Facades\Hash;
 
 class UserHandler
 {
-    public UserService $userService;
+    public function __construct(
+        private UserService $userService
+    ) {}
 
-    public function __construct(UserService $userService)
+    public function handleStore($data): User
     {
-        $this->userService = $userService;
+        $data['password'] = Hash::make($data['password']);
+        return $this->userService->create($data);
     }
 
-    public function handleStore($request)
+    public function handleUpdate($data, User $user): User
     {
-        $user = $this->userService->create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-
-        return $user;
-    }
-
-    public function handleUpdate($request, $user)
-    {
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-
-        if ($request['password']) {
-            $user->password = Hash::make($request['password']);
+        if (!empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
         }
 
-        $user->save();
-
-        return $user;
-    }
-
-    public function handleDelete($user)
-    {
-        $user->delete();
+        return $this->userService->update($user, $data);
     }
 }

@@ -6,8 +6,14 @@ use App\Models\User\User;
 
 class UserService
 {
-    public function create($array)
+    public function create($data): User
     {
-        return User::create($array);
+        return User::create($data);
+    }
+
+    public function update(User $user, $data): User
+    {
+        $user->update($data);
+        return $user;
     }
 }

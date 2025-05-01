@@ -7,17 +7,14 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User\User;
 use App\Services\User\UserHandler;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
-    public UserHandler $userHandler;
-
-    public function __construct(UserHandler $userHandler)
-    {
-        $this->userHandler = $userHandler;
-    }
+    public function __construct(
+        private UserHandler $userHandler
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -42,7 +39,7 @@ class UserController extends Controller
     {
         $user = $this->userHandler->handleStore($request);
 
-        return redirect()->route('admin.users.edit', $user->id)->with('success', 'User created successfully.');
+        return redirect()->route('admin.users.edit', $user->id)->with('success', 'User created successfully!');
     }
 
     /**
@@ -68,7 +65,7 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        $this->userHandler->handleDelete($user);
+        $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully!');
     }
