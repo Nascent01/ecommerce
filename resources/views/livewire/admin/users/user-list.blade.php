@@ -77,14 +77,22 @@
                                         {{ Carbon\Carbon::parse($user->created_at)->format('d.m.Y') }}</td>
                                     <td class="text-center">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-primary shadow-none">
-                                                <i class="fas fa-edit"></i></button>
+                                            <a href="{{ route('admin.users.edit', $user->id) }}" type="button"
+                                                class="btn btn-primary shadow-none">
+                                                <i class="fas fa-edit"></i></a>
                                             <button wire:click="openUserRolesModal({{ $user->id }})"
                                                 data-bs-toggle="modal" data-bs-target="#assignRolesModal" type="button"
                                                 class="btn btn-info shadow-none">
                                                 <i class="fas fa-user-plus"></i></button>
-                                            <button type="button" class="btn btn-danger shadow-none"><i
-                                                    class="fas fa-trash"></i></button>
+
+                                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger shadow-none"
+                                                    onclick="return confirm('Are you sure you want to delete this user?')"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

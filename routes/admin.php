@@ -10,7 +10,7 @@ Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function 
         return view('admin.dashboard.dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except(['show']);
 
     Route::resource('roles', RoleController::class);
 
