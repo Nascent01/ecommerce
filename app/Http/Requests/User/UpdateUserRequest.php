@@ -29,14 +29,14 @@ class UpdateUserRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                'unique:users,email,'
+                'email' => Rule::unique('users')->ignore($this->user),
             ],
 
             'password' => 'nullable|string|min:8|confirmed',
         ];
     }
 
-     /**
+    /**
      * Get custom messages for validator errors.
      *
      * @return array

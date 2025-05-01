@@ -25,10 +25,8 @@ class UserHandler
         return $user;
     }
 
-    public function handleUpdate($request, $id)
+    public function handleUpdate($request, $user)
     {
-        $user = User::find($id);
-
         $user->name = $request['name'];
         $user->email = $request['email'];
 
@@ -41,9 +39,8 @@ class UserHandler
         return $user;
     }
 
-    public function handleDelete($id)
+    public function handleDelete($user)
     {
-        $user = User::find($id);
         $user->delete();
     }
 }

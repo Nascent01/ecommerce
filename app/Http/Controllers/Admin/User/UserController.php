@@ -7,12 +7,13 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User\User;
 use App\Services\User\UserHandler;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
     public UserHandler $userHandler;
-    
+
     public function __construct(UserHandler $userHandler)
     {
         $this->userHandler = $userHandler;
@@ -21,7 +22,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.users.user_list');
     }
@@ -29,51 +30,45 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return view('admin.users.user_edit', [
-            'user' => new User(),
-        ]);
+        return view('admin.users.user_edit', ['user' => new User()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-      $user = $this->userHandler->handleStore($request);
+        $user = $this->userHandler->handleStore($request);
 
-        return redirect()->route('admin.users.edit', $user->id)
-            ->with('success', 'User created successfully.');
+        return redirect()->route('admin.users.edit', $user->id)->with('success', 'User created successfully.');
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(User $user): View
     {
-        return view('admin.users.user_edit', [
-            'user' => User::find($id),
-        ]);
+        return view('admin.users.user_edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-       $user = $this->userHandler->handleUpdate($request->all(), $id);
+        $user = $this->userHandler->handleUpdate($request->all(), $user);
 
-       return redirect()->route('admin.users.edit', $user->id)->with('success', 'User updated successfully!');
+        return redirect()->route('admin.users.edit', $user->id)->with('success', 'User updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(User $user): RedirectResponse
     {
-        $this->userHandler->handleDelete($id);
+        $this->userHandler->handleDelete($user);
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully!');
     }
