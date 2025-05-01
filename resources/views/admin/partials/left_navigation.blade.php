@@ -15,10 +15,10 @@
                 :link="route('admin.users.index')" :active="str_contains($routeName, 'admin.users') ? 1 : 0" />
 
             <x-admin.left-navigation.nav-item title="Roles" image="<i class='fas fa-user-shield text-dark'></i>"
-                link="#" active="0" />
+                :link="route('admin.roles.index')" :active="str_contains($routeName, 'admin.roles') ? 1 : 0" />
 
             <x-admin.left-navigation.nav-item title="Permissions" image="<i class='fas fa-key text-dark'></i>"
-                link="#" active="0" />
+                :link="route('admin.permissions.index')" :active="str_contains($routeName, 'admin.permissions') ? 1 : 0" />
         </ul>
     </div>
 </aside>
