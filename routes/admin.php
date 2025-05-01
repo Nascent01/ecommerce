@@ -12,7 +12,7 @@ Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function 
 
     Route::resource('users', UserController::class)->except(['show']);
 
-    Route::resource('roles', RoleController::class);
+    Route::resource('roles', RoleController::class)->except(['show']);
 
-    Route::resource('permissions', PermissionController::class);
+    Route::resource('permissions', PermissionController::class)->except(['show']);
 });
