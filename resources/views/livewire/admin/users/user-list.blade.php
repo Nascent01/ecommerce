@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                             @forelse ($users as $user)
-                                <tr>
+                                <tr wire:key="{{ $user->id }}">
                                     <th class="text-center" scope="row">{{ $user->id }}</th>
                                     <td class="text-center">{{ $user->name }}</td>
                                     <td class="text-center">{{ $user->email }}</td>
