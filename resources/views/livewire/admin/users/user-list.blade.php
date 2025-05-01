@@ -40,7 +40,7 @@
                 @include('partials.flash_messages')
                 <div class="table-responsive card">
                     <div class="py-3 mx-1 justify-content-end d-flex">
-                        <a href="#" class="btn btn-primary shadow-none mb-0">
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-primary shadow-none mb-0">
                             <i class="fas fa-user me-2"></i>Add User
                         </a>
                     </div>
