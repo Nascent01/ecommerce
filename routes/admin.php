@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\Permission\PermissionController;
+use App\Http\Controllers\Admin\Auth\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\User\UserController;
 
@@ -9,4 +11,8 @@ Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function 
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::resource('users', UserController::class);
+
+    Route::resource('roles', RoleController::class);
+
+    Route::resource('permissions', PermissionController::class);
 });
