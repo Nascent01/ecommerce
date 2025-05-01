@@ -19,6 +19,15 @@
 
             <x-admin.left-navigation.nav-item title="Permissions" image="<i class='fas fa-key text-dark'></i>"
                 :link="route('admin.permissions.index')" :active="str_contains($routeName, 'admin.permissions') ? 1 : 0" />
+
+            <x-admin.left-navigation.nav-item title="Products" image="<i class='fas fa-box text-dark'></i>"
+                link="#" active="0" />
+
+            <x-admin.left-navigation.nav-item title="Product Categories" image="<i class='fas fa-th-large text-dark'></i>"
+                link="#" active="0" />
+
+            <x-admin.left-navigation.nav-item title="Product Attributes" image="<i class='fas fa-sliders-h text-dark'></i>"
+                link="#" active="0" />
         </ul>
     </div>
 </aside>

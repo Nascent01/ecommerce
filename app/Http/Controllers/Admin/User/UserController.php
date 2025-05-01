@@ -37,7 +37,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = $this->userHandler->handleStore($request);
+        $validatedData = $request->validated();
+        $user = $this->userHandler->handleStore($validatedData);
 
         return redirect()->route('admin.users.edit', $user->id)->with('success', 'User created successfully!');
     }
@@ -55,7 +56,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $user = $this->userHandler->handleUpdate($request->all(), $user);
+        $validatedData = $request->validated();
+        $user = $this->userHandler->handleUpdate($validatedData, $user);
 
         return redirect()->route('admin.users.edit', $user->id)->with('success', 'User updated successfully!');
     }

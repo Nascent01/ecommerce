@@ -21,6 +21,8 @@ class UserHandler
     {
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
         }
 
         return $this->userService->update($user, $data);
