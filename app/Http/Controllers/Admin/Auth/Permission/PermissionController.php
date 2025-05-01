@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Admin\Auth\Permission;
 
 use App\Http\Controllers\Controller;
+use App\Models\Auth\Permission\Permission;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.auth.permissions.permission_list');
     }
@@ -18,9 +20,9 @@ class PermissionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.auth.permissions.permission_edit', ['permission' => new Permission()]);
     }
 
     /**
