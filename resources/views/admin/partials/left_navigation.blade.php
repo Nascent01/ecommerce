@@ -17,9 +17,6 @@
             <x-admin.left-navigation.nav-item title="Roles" image="<i class='fas fa-user-shield text-dark'></i>"
                 :link="route('admin.roles.index')" :active="str_contains($routeName, 'admin.roles') ? 1 : 0" />
 
-            <x-admin.left-navigation.nav-item title="Permissions" image="<i class='fas fa-key text-dark'></i>"
-                :link="route('admin.permissions.index')" :active="str_contains($routeName, 'admin.permissions') ? 1 : 0" />
-
             <x-admin.left-navigation.nav-item title="Products" image="<i class='fas fa-box text-dark'></i>"
                 link="#" active="0" />
 
