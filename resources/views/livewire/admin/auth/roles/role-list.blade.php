@@ -32,8 +32,8 @@
             <div class="col-lg-12">
                 @include('partials.flash_messages')
                 <div class="table-responsive card">
-                    <div class="py-3 mx-1 justify-content-end d-flex">
-                        <a href="#" class="btn btn-primary shadow-none mb-0">
+                    <div class="py-3 mx-3 justify-content-start d-flex">
+                        <a href="{{ route('admin.roles.create') }}" class="btn btn-primary shadow-none mb-0">
                             <i class="fas fa-id-badge me-2"></i> Add Role
                         </a>
                     </div>
@@ -42,20 +42,20 @@
                             <tr>
                                 <th wire:click.prevent="sortBy('id')" class="text-center cursor-pointer" scope="col">
                                     ID
-                                    {{-- <x-sort-indicator field="id" :sortField="$sortField" :sortDirection="$sortDirection" /> --}}
+                                    <x-sort-indicator field="id" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th wire:click.prevent="sortBy('name')" class="text-center cursor-pointer"
                                     scope="col">Name
-                                    {{-- <x-sort-indicator field="name" :sortField="$sortField" :sortDirection="$sortDirection" /> --}}
+                                    <x-sort-indicator field="name" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
-                                <th wire:click.prevent="sortBy('email')" class="text-center cursor-pointer"
+                                <th wire:click.prevent="sortBy('description')" class="text-center cursor-pointer"
                                     scope="col">Description
-                                    {{-- <x-sort-indicator field="email" :sortField="$sortField" :sortDirection="$sortDirection" /> --}}
+                                    <x-sort-indicator field="description" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th wire:click.prevent="sortBy('created_at')" class="text-center cursor-pointer"
                                     scope="col">
                                     Created
-                                    {{-- <x-sort-indicator field="created_at" :sortField="$sortField" :sortDirection="$sortDirection" /> --}}
+                                    <x-sort-indicator field="created_at" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
                                 <th class="text-center" scope="col">Actions</th>
                             </tr>
@@ -88,11 +88,11 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{-- @if ($roles->hasPages())
-                        <div class="py-3 mx-1">
-                            <x-pagination :items="$users" position="justify-content-end" />
+                    @if ($roles->hasPages())
+                        <div class="py-3 mx-3">
+                            <x-pagination :items="$roles" position="justify-content-end" />
                         </div>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
         </div>

@@ -22,4 +22,13 @@ class Role extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function scopeFilter($query, $name = null)
+    {
+        if ($name) {
+            $query->where('name', 'like', "%{$name}%");
+        }
+
+        return $query;
+    }
 }

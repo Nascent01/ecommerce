@@ -41,12 +41,14 @@ class UserList extends Component
         $this->dispatch('closeModal');
     }
 
+    public function getFilters() {}
+
     public function render()
     {
-        $userQb = User::fillter($this->name, $this->email);
+        $usersQb = User::filter($this->name, $this->email)->notDeleted();
 
         return view('livewire.admin.users.user-list', [
-            'users' => $userQb->orderBy($this->sortField, $this->sortDirection)->paginate(10),
+            'users' => $usersQb->orderBy($this->sortField, $this->sortDirection)->paginate(10),
             'roles' => (new RoleRepository())->getRoles(),
         ]);
     }

@@ -11,20 +11,24 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <x-admin.left-navigation.nav-item title="Users" image="<i class='fas fa-users text-dark'></i>"
-                :link="route('admin.users.index')" :active="str_contains($routeName, 'admin.users') ? 1 : 0" />
+            @can('manage-users')
+                <x-admin.left-navigation.nav-item title="Users" image="<i class='fas fa-users text-dark'></i>"
+                    :link="route('admin.users.index')" :active="str_contains($routeName, 'admin.users') ? 1 : 0" />
+            @endcan
 
-            <x-admin.left-navigation.nav-item title="Roles" image="<i class='fas fa-user-shield text-dark'></i>"
-                :link="route('admin.roles.index')" :active="str_contains($routeName, 'admin.roles') ? 1 : 0" />
+            @can('manage-roles')
+                <x-admin.left-navigation.nav-item title="Roles" image="<i class='fas fa-user-shield text-dark'></i>"
+                    :link="route('admin.roles.index')" :active="str_contains($routeName, 'admin.roles') ? 1 : 0" />
+            @endcan
 
             <x-admin.left-navigation.nav-item title="Products" image="<i class='fas fa-box text-dark'></i>"
                 link="#" active="0" />
 
-            <x-admin.left-navigation.nav-item title="Product Categories" image="<i class='fas fa-th-large text-dark'></i>"
-                link="#" active="0" />
+            <x-admin.left-navigation.nav-item title="Product Categories"
+                image="<i class='fas fa-th-large text-dark'></i>" link="#" active="0" />
 
-            <x-admin.left-navigation.nav-item title="Product Attributes" image="<i class='fas fa-sliders-h text-dark'></i>"
-                link="#" active="0" />
+            <x-admin.left-navigation.nav-item title="Product Attributes"
+                image="<i class='fas fa-sliders-h text-dark'></i>" link="#" active="0" />
         </ul>
     </div>
 </aside>

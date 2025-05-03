@@ -67,7 +67,7 @@ class User extends Authenticatable
         }
     }
 
-    public function scopeFillter($query, $name, $email)
+    public function scopeFilter($query, $name, $email)
     {
         if ($name) {
             $query->where('name', 'like', "%{$name}%");
@@ -78,5 +78,10 @@ class User extends Authenticatable
         }
 
         return $query;
+    }
+
+    public function scopeNotDeleted($query)
+    {
+        return $query->whereNull('deleted_at');
     }
 }
