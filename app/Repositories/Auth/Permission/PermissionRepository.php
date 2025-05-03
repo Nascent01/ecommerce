@@ -6,14 +6,23 @@ use App\Models\Auth\Permission\Permission;
 
 class PermissionRepository
 {
+    public function basePermissionQuery()
+    {
+        return Permission::query();
+    }
 
     public function getPermissionWithRoles()
     {
-        return Permission::with('roles')->get();
+        return $this->basePermissionQuery()->get();
     }
 
     public function getAllPermissionIds()
     {
-        return Permission::pluck('id')->toArray();
+        return $this->basePermissionQuery()->pluck('id')->toArray();
+    }
+
+    public function getAllPermissionNames()
+    {
+        return $this->basePermissionQuery()->pluck('name', 'name')->toArray();
     }
 }
