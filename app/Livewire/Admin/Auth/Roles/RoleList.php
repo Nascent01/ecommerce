@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Auth\Roles;
 
 use App\Models\Auth\Role\Role;
+use App\Repositories\Auth\Permission\PermissionRepository;
 use App\Traits\Sortable;
 use Livewire\Component;
 
@@ -14,10 +15,17 @@ class RoleList extends Component
     public Role $role;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
+    public $selectedPermissions = [];
 
     public function clearFilters()
     {
         $this->reset();
+    }
+
+    public function openRolePermissionsModal(Role $role)
+    {
+        $this->role = $role;
+        $this->selectedPermissions = $role->permissions->pluck('id')->toArray();
     }
 
     public function saveRolePermissions()
@@ -41,6 +49,7 @@ class RoleList extends Component
 
         return view('livewire.admin.auth.roles.role-list', [
             'roles' => $rolesQb->orderBy($this->sortField, $this->sortDirection)->paginate(10),
+            'permissions' => (new PermissionRepository())->getPermissionWithRoles(),
         ]);
     }
 }

@@ -75,7 +75,8 @@
                                             <button wire:click="openRolePermissionsModal({{ $role->id }})"
                                                 data-bs-toggle="modal" data-bs-target="#assaignPermissionModal"
                                                 type="button" class="btn btn-info shadow-none">
-                                                <i class="fas fa-user-plus"></i></button>
+                                                <i class="fas fa-user-cog"></i>
+                                            </button>
                                             <button type="button" class="btn btn-danger shadow-none"><i
                                                     class="fas fa-trash"></i></button>
                                         </div>
@@ -97,4 +98,6 @@
             </div>
         </div>
     </div>
+
+    @include('livewire.admin.auth.roles._assign_permissions_modal')
 </div>

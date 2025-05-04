@@ -113,5 +113,5 @@
         </div>
     </div>
 
-    @include('livewire.admin.users._assign_role_modal')
+    @include('livewire.admin.users._assign_roles_modal')
 </div>
