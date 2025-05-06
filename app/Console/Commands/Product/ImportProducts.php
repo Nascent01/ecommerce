@@ -4,6 +4,7 @@ namespace App\Console\Commands\Product;
 
 use Illuminate\Console\Command;
 use App\Traits\CommandTrait;
+use Illuminate\Support\Facades\Artisan;
 
 class ImportProducts extends Command
 {
@@ -30,9 +31,14 @@ class ImportProducts extends Command
     {
         $scriptTimeStart =  $this->displayCommandStart('Importing products has started...');
 
-        $this->truncateTables(['products'], true);
-       
-       
+        $this->truncateTables([
+            'products',
+            'product_categories',
+            'product_product_category',
+        ], true);
+
+        Artisan::call('db:seed', ['class' => 'Database\Seeders\Product\ProductCategorySeeder']);
+
         $this->displayExecutionTime($scriptTimeStart);
     }
 }
