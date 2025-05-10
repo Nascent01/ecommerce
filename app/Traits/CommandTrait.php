@@ -57,8 +57,21 @@ trait CommandTrait
 
     public function bulkInsert($model, $data)
     {
-       if (!empty($data) && count($data) > 0) {
-            $model::insert($data);
-        } 
+        if (!empty($data) && count($data) > 0) {
+            $chunks = array_chunk($data, 1000);
+            foreach ($chunks as $chunk) {
+                $model::insert($chunk);
+            }
+        }
+    }
+
+    public function bulkInsertPivot($table, $data)
+    {
+        if (!empty($data) && count($data) > 0) {
+            $chunks = array_chunk($data, 1000);
+            foreach ($chunks as $chunk) {
+                DB::table($table)->insert($chunk);
+            }
+        }
     }
 }
