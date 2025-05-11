@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Product;
 
-use App\Repositories\Product\ProductCategoryRepository;
+use App\Services\Command\ImportProductsHandler;
 use Illuminate\Console\Command;
 use App\Traits\CommandTrait;
 use Illuminate\Support\Facades\Artisan;
@@ -26,7 +26,7 @@ class ImportProducts extends Command
     protected $description = 'Import products from json file';
 
     public function __construct(
-        private ProductCategoryRepository $productCategoryRepository
+        private ImportProductsHandler $importProductsHandler,
     ) {
         parent::__construct();
     }
@@ -42,6 +42,9 @@ class ImportProducts extends Command
             'products',
             'product_categories',
             'product_product_category',
+            'attributes',
+            'attribute_choices',
+            'attribute_choice_product',
         ], true);
 
         Artisan::call('db:seed', ['class' => 'Database\Seeders\Product\ProductCategorySeeder']);
@@ -49,7 +52,11 @@ class ImportProducts extends Command
         $productsPath = storage_path('app/private/Products.json');
         $products = json_decode(file_get_contents($productsPath), true);
 
-        $productCategory = $this->productCategoryRepository->getByName('Phones');
+        $this->importProductsHandler->handleAttributesInsert();
+
+        $this->importProductsHandler->handleProductsAndAttributeChoices($products);
+
+        $this->importProductsHandler->handleProductProductCategoryInsert();
 
         $this->displayExecutionTime($scriptTimeStart);
     }
