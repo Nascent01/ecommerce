@@ -8,14 +8,14 @@
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-5">
-                        <label for="search-name" class="form-label"><i class="fas fa-user me-1"></i> Name</label>
+                        <label for="search-name" class="form-label">Name</label>
                         <div class="input-group">
                             <input wire:model.live="name" class="form-control" id="search-name"
                                 placeholder="Search by name">
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="search-email" class="form-label"><i class="fas fa-envelope me-1"></i> Email</label>
+                        <label for="search-email" class="form-label">Email</label>
                         <div class="input-group">
                             <input wire:model.live="email" class="form-control" id="search-email"
                                 placeholder="Search by email">
@@ -70,12 +70,12 @@
                         <tbody>
                             @forelse ($users as $user)
                                 <tr wire:key="{{ $user->id }}">
-                                    <th class="text-center" scope="row">{{ $user->id }}</th>
-                                    <td class="text-center">{{ $user->name }}</td>
-                                    <td class="text-center">{{ $user->email }}</td>
-                                    <td class="text-center">
+                                    <th class="text-center w-1-perc" scope="row">{{ $user->id }}</th>
+                                    <td class="text-center w-20-perc">{{ $user->name }}</td>
+                                    <td class="text-center w-40-perc">{{ $user->email }}</td>
+                                    <td class="text-center w-20-perc">
                                         {{ Carbon\Carbon::parse($user->created_at)->format('d.m.Y') }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center w-20-perc">
                                         <div class="text-center">
                                             <a href="{{ route('admin.users.edit', $user->id) }}" type="button"
                                                 class="btn btn-primary shadow-none">

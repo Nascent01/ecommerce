@@ -41,8 +41,6 @@ class UserList extends Component
         $this->dispatch('closeModal');
     }
 
-    public function getFilters() {}
-
     public function render()
     {
         $usersQb = User::filter($this->name, $this->email)->notDeleted();

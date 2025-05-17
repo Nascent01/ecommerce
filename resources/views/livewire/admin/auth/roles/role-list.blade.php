@@ -62,13 +62,13 @@
                         </thead>
                         <tbody>
                             @forelse ($roles as $role)
-                                <tr>
-                                    <th class="text-center" scope="row">{{ $role->id }}</th>
-                                    <td class="text-center">{{ $role->name }}</td>
-                                    <td class="text-center">{{ $role->description }}</td>
-                                    <td class="text-center">
+                                <tr wire:key="{{ $role->id }}">
+                                    <th class="text-center w-1-perc" scope="row">{{ $role->id }}</th>
+                                    <td class="text-center w-20-perc">{{ $role->name }}</td>
+                                    <td class="text-center w-40-perc">{{ $role->description }}</td>
+                                    <td class="text-center w-20-perc">
                                         {{ Carbon\Carbon::parse($role->created_at)->format('d.m.Y') }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center w-20-perc">
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary shadow-none">
                                                 <i class="fas fa-edit"></i></button>

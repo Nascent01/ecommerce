@@ -41,8 +41,6 @@ class RoleList extends Component
         $this->dispatch('closeModal');
     }
 
-    public function getFilters() {}
-
     public function render()
     {
         $rolesQb = Role::filter($this->name);
