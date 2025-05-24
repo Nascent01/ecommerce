@@ -19,7 +19,7 @@ class ProductCategoryList extends Component
         $this->reset();
     }
 
-      public function toggleActive(ProductCategory $productCategory)
+    public function toggleActive(ProductCategory $productCategory)
     {
         $productCategory->is_active = !$productCategory->is_active;
         $productCategory->save();

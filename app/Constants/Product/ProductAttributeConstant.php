@@ -2,7 +2,7 @@
 
 namespace App\Constants\Product;
 
-class AttributeConstant
+class ProductAttributeConstant
 {
     const TYPE_ATTRIBUTE_MODEL = 'Model';
     const TYPE_ATTRIBUTE_BRAND = 'Brand';

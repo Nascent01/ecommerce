@@ -3,33 +3,24 @@
 namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Product extends Model
+class ProductAttribute extends Model
 {
     use HasSlug;
-    use SoftDeletes;
 
     protected $fillable = [
-        'sku',
         'name',
         'slug',
-        'image',
-        'price',
+        'weight',
         'is_active',
     ];
 
-    public function categories(): BelongsToMany
+    public function productAttributeChoices(): HasMany
     {
-        return $this->belongsToMany(ProductCategory::class);
-    }
-
-    public function attributeChoices(): BelongsToMany
-    {
-        return $this->belongsToMany(AttributeChoice::class);
+        return $this->hasMany(ProductAttributeChoice::class);
     }
 
     /**
@@ -43,14 +34,10 @@ class Product extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function scopeFilter($query, $name = null, $sku = null)
+    public function scopeFilter($query, $name = null)
     {
         if ($name) {
             $query->where('name', 'like', '%' . $name . '%');
-        }
-
-        if ($sku) {
-            $query->where('sku', 'like', '%' . $sku . '%');
         }
 
         return $query;

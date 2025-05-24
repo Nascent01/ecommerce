@@ -3,7 +3,7 @@
 namespace Database\Seeders\Product;
 
 use App\Constants\Product\ProductCategoryConstant;
-use App\Services\Product\ProductCategoryService;
+use App\Services\Product\ProductCategory\ProductCategoryService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

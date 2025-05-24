@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Product\Attribute;
 
 return new class extends Migration
 {
@@ -12,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attribute_choices', function (Blueprint $table) {
+        Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Attribute::class)->cascadeOnDelete();
-            $table->string('name');
-            $table->string('slug');
-
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->smallInteger('weight')->default(1);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attribute_choices');
+        Schema::dropIfExists('product_attributes');
     }
 };

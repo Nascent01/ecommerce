@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\Role\RoleController;
+use App\Http\Controllers\Admin\Product\ProductAttributeController;
 use App\Http\Controllers\Admin\Product\ProductCategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\User\UserController;
-use App\Models\Product\Attribute;
 
 Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function () {
     Route::get('/dashboard', function () {
@@ -18,5 +18,5 @@ Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function 
 
     Route::resource('products', ProductController::class)->except(['show'])->middleware('can:manage-products');
     Route::resource('product-categories', ProductCategoryController::class)->except(['show', 'destroy'])->middleware('can:manage-product-categories');
-    Route::resource('product-attributes', Attribute::class)->except(['show'])->middleware('can:manage-attributes');
+    Route::resource('product-attributes', ProductAttributeController::class)->except(['show'])->middleware('can:manage-attributes');
 });

@@ -42,9 +42,9 @@ class ImportProducts extends Command
             'products',
             'product_categories',
             'product_product_category',
-            'attributes',
-            'attribute_choices',
-            'attribute_choice_product',
+            'product_attributes',
+            'product_attribute_choices',
+            'product_product_attribute_choice',
         ], true);
 
         Artisan::call('db:seed', ['class' => 'Database\Seeders\Product\ProductCategorySeeder']);

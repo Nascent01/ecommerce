@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Product\AttributeChoice;
 use App\Models\Product\Product;
+use App\Models\Product\ProductAttributeChoice;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attribute_choice_product', function (Blueprint $table) {
+        Schema::create('product_product_attribute_choice', function (Blueprint $table) {
             $table->foreignIdFor(Product::class)->cascadeOnDelete();
-            $table->foreignIdFor(AttributeChoice::class)->cascadeOnDelete();
+            $table->foreignIdFor(ProductAttributeChoice::class)->cascadeOnDelete();
 
-            $table->primary(['product_id', 'attribute_choice_id']);
+            $table->primary(['product_id', 'product_attribute_choice_id']);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attribute_choice_product');
+        Schema::dropIfExists('product_product_attribute_choice');
     }
 };

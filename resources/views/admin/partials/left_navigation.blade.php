@@ -27,7 +27,7 @@
                 image="<i class='fas fa-th-large text-dark'></i>" :link="route('admin.product-categories.index')" :active="str_contains($routeName, 'admin.product-categories') ? 1 : 0" />
 
             <x-admin.left-navigation.nav-item title="Product Attributes"
-                image="<i class='fas fa-sliders-h text-dark'></i>" link="#" active="0" />
+                image="<i class='fas fa-sliders-h text-dark'></i>" :link="route('admin.attributes.index')" :active="str_contains($routeName, 'admin.attributes') ? 1 : 0" />
         </ul>
     </div>
 </aside>

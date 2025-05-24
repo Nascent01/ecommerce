@@ -2,9 +2,9 @@
 
 namespace App\Services\Command;
 
-use App\Constants\Product\AttributeConstant;
-use App\Models\Product\Attribute;
-use App\Models\Product\AttributeChoice;
+use App\Constants\Product\ProductAttributeConstant;
+use App\Models\Product\ProductAttribute;
+use App\Models\Product\ProductAttributeChoice;
 use App\Models\Product\Product;
 use App\Repositories\Product\ProductCategoryRepository;
 use App\Traits\CommandTrait;
@@ -17,17 +17,18 @@ class ImportProductsHandler
     {
         $attributesData = [];
 
-        foreach (AttributeConstant::ATTRIBUTES_ARRAY as $attribute) {
+        foreach (ProductAttributeConstant::ATTRIBUTES_ARRAY as $index => $attribute) {
             $attributesData[] = [
                 'name' => $attribute,
                 'slug' => str_slug($attribute),
+                'weight' => $index + 1,
                 'is_active' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
 
-        $this->bulkInsert(Attribute::class, $attributesData);
+        $this->bulkInsert(ProductAttribute::class, $attributesData);
     }
 
     public function handleProductsAndAttributeChoices($products)
@@ -38,7 +39,7 @@ class ImportProductsHandler
         $attributesChoicesInsertData = [];
         $existingAttributeChoices = [];
         $productAttributeChoiceData = [];
-        $attributeIdsMappedByName = Attribute::pluck('id', 'name')->toArray();
+        $attributeIdsMappedByName = ProductAttribute::pluck('id', 'name')->toArray();
 
         foreach ($products as $product) {
             $productData = $this->handleProductArrayForInsert($product, $existingProductSlugs);
@@ -51,7 +52,7 @@ class ImportProductsHandler
         }
 
         $this->bulkInsert(Product::class, $productsData);
-        $this->bulkInsert(AttributeChoice::class, $attributesChoicesInsertData);
+        $this->bulkInsert(ProductAttributeChoice::class, $attributesChoicesInsertData);
 
         $this->handleAttributeChoiceProductInsert($productAttributeChoiceData);
     }
@@ -90,15 +91,15 @@ class ImportProductsHandler
     public function handleAttributeChoices($product, $attributeIdsMappedByName, &$attributesChoicesInsertData, &$existingAttributeChoices, &$productAttributeChoiceData)
     {
         foreach ($product as $attributeName => $attributeChoiceValue) {
-            if (in_array($attributeName, AttributeConstant::ATTRIBUTES_ARRAY) && !empty($attributeChoiceValue)) {
+            if (in_array($attributeName, ProductAttributeConstant::ATTRIBUTES_ARRAY) && !empty($attributeChoiceValue)) {
                 if (!isset($existingAttributeChoices[$attributeName])) {
                     $existingAttributeChoices[$attributeName] = [];
                 }
 
-                if (isset(AttributeConstant::ATTRIBUTE_SEPERATOR_MAPPING[$attributeName])) {
-                    $separator = AttributeConstant::ATTRIBUTE_SEPERATOR_MAPPING[$attributeName];
+                if (isset(ProductAttributeConstant::ATTRIBUTE_SEPERATOR_MAPPING[$attributeName])) {
+                    $separator = ProductAttributeConstant::ATTRIBUTE_SEPERATOR_MAPPING[$attributeName];
                     $choice = explode($separator, $attributeChoiceValue)[0];
-                } else if ($attributeName == AttributeConstant::TYPE_ATTRIBUTE_MODEL) {
+                } else if ($attributeName == ProductAttributeConstant::TYPE_ATTRIBUTE_MODEL) {
                     $choice = str_replace('_', '', $attributeChoiceValue);
                 } else {
                     $choice = $attributeChoiceValue;
@@ -109,7 +110,7 @@ class ImportProductsHandler
                 if (!in_array($slug, $existingAttributeChoices[$attributeName])) {
                     $existingAttributeChoices[$attributeName][] = $slug;
                     $attributesChoicesInsertData[] = [
-                        'attribute_id' => $attributeIdsMappedByName[$attributeName],
+                        'product_attribute_id' => $attributeIdsMappedByName[$attributeName],
                         'name' => $choice,
                         'slug' => $slug,
                         'created_at' => now(),
@@ -147,12 +148,12 @@ class ImportProductsHandler
 
         $productAttributeChoiceArrayForInsert = [];
 
-        $attributes = Attribute::query()->get();
+        $attributes = ProductAttribute::query()->get();
 
         $attributeChoicesGroupedByAttributeName = $attributes->mapWithKeys(function ($attribute) {
             return [
                 $attribute->name =>
-                $attribute->attributeChoices->pluck('id', 'machine_name')->toArray()
+                $attribute->productAttributeChoices->pluck('id', 'machine_name')->toArray()
             ];
         });
 
@@ -169,13 +170,13 @@ class ImportProductsHandler
                     if ($choiceId) {
                         $productAttributeChoiceArrayForInsert[] = [
                             'product_id' => $productId,
-                            'attribute_choice_id' => $choiceId,
+                            'product_attribute_choice_id' => $choiceId,
                         ];
                     }
                 }
             }
         }
 
-        $this->bulkInsertPivot('attribute_choice_product', $productAttributeChoiceArrayForInsert);
+        $this->bulkInsertPivot('product_product_attribute_choice', $productAttributeChoiceArrayForInsert);
     }
 }
