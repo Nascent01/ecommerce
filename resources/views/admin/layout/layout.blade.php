@@ -78,6 +78,19 @@
                 }
             });
         }
+
+        window.addEventListener('alertHide', event => {
+            setTimeout(function() {
+                $(".alert").fadeOut('fast');
+            }, 3000);
+        });
+
+        window.addEventListener('closeModal', event => {
+            $('.modal').modal('hide');
+            setTimeout(function() {
+                $(".alert").fadeOut('fast');
+            }, 3000);
+        })
     </script>
 
     <!-- GitHub buttons -->

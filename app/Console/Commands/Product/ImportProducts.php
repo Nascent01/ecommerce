@@ -54,7 +54,9 @@ class ImportProducts extends Command
 
         $this->importProductsHandler->handleAttributesInsert();
 
-        $this->importProductsHandler->handleProductsAndAttributeChoices($products);
+        $this->importProductsHandler->handleProducts($products);
+
+        $this->importProductsHandler->handleProductAttributeChoices($products);
 
         $this->importProductsHandler->handleProductProductCategoryInsert();
 

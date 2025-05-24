@@ -31,15 +31,10 @@ class ImportProductsHandler
         $this->bulkInsert(ProductAttribute::class, $attributesData);
     }
 
-    public function handleProductsAndAttributeChoices($products)
+    public function handleProducts($products)
     {
         $productsData = [];
         $existingProductSlugs = [];
-
-        $attributesChoicesInsertData = [];
-        $existingAttributeChoices = [];
-        $productAttributeChoiceData = [];
-        $attributeIdsMappedByName = ProductAttribute::pluck('id', 'name')->toArray();
 
         foreach ($products as $product) {
             $productData = $this->handleProductArrayForInsert($product, $existingProductSlugs);
@@ -47,14 +42,9 @@ class ImportProductsHandler
             if ($productData !== null) {
                 $productsData[] = $productData;
             }
-
-            $this->handleAttributeChoices($product, $attributeIdsMappedByName, $attributesChoicesInsertData, $existingAttributeChoices, $productAttributeChoiceData);
         }
 
         $this->bulkInsert(Product::class, $productsData);
-        $this->bulkInsert(ProductAttributeChoice::class, $attributesChoicesInsertData);
-
-        $this->handleAttributeChoiceProductInsert($productAttributeChoiceData);
     }
 
     public function handleProductArrayForInsert($product, &$existingProductSlugs)
@@ -86,6 +76,22 @@ class ImportProductsHandler
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+
+    public function handleProductAttributeChoices($products)
+    {
+        $attributesChoicesInsertData = [];
+        $existingAttributeChoices = [];
+        $productAttributeChoiceData = [];
+        $attributeIdsMappedByName = ProductAttribute::pluck('id', 'name')->toArray();
+
+        foreach ($products as $product) {
+            $this->handleAttributeChoices($product, $attributeIdsMappedByName, $attributesChoicesInsertData, $existingAttributeChoices, $productAttributeChoiceData);
+        }
+
+        $this->bulkInsert(ProductAttributeChoice::class, $attributesChoicesInsertData);
+
+        $this->handleAttributeChoiceProductInsert($productAttributeChoiceData);
     }
 
     public function handleAttributeChoices($product, $attributeIdsMappedByName, &$attributesChoicesInsertData, &$existingAttributeChoices, &$productAttributeChoiceData)
@@ -153,7 +159,7 @@ class ImportProductsHandler
         $attributeChoicesGroupedByAttributeName = $attributes->mapWithKeys(function ($attribute) {
             return [
                 $attribute->name =>
-                $attribute->productAttributeChoices->pluck('id', 'machine_name')->toArray()
+                $attribute->productAttributeChoices->pluck('id', 'slug')->toArray()
             ];
         });
 

@@ -27,9 +27,9 @@ class Product extends Model
         return $this->belongsToMany(ProductCategory::class);
     }
 
-    public function attributeChoices(): BelongsToMany
+    public function productAttributeChoices(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeChoice::class);
+         return $this->belongsToMany(ProductAttributeChoice::class, 'product_product_attribute_choice');
     }
 
     /**

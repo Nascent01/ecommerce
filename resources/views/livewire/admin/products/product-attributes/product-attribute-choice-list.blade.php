@@ -1,4 +1,5 @@
 <div>
+    @include('partials.flash_messages')
     <div class="mt-5">
         <h5>Product Attribute Choices</h5>
         <div class="container-fluid py-4">
@@ -74,11 +75,10 @@
             @endforeach
         @endif
     </div>
-    @if ($productAttributeChoices->hasPages())
-        <div class="py-3 mx-3">
-            <x-pagination :items="$productAttributeChoices" position="justify-content-end" />
-        </div>
-    @endif
+
+    <div class="py-3 mx-3">
+        {{ $productAttributeChoices->links('custom-pagination-links') }}
+    </div>
 
     @include('livewire.admin.products.product-attributes._edit_product_attribute_choice_modal')
 </div>
