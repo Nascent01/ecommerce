@@ -14,11 +14,16 @@ return new class extends Migration
     {
         Schema::create('product_attribute_choices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ProductAttribute::class)->cascadeOnDelete();
+            $table->unsignedBigInteger('product_attribute_id');
             $table->string('name');
             $table->string('slug');
 
             $table->timestamps();
+
+            $table->foreign('product_attribute_id')
+                ->references('id')
+                ->on('product_attributes')
+                ->onDelete('cascade');
         });
     }
 
