@@ -34,7 +34,7 @@ class ProductCategory extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-     public function scopeFilter($query, $name = null)
+    public function scopeFilter($query, $name = null)
     {
         if ($name) {
             $query->where('name', 'like', '%' . $name . '%');

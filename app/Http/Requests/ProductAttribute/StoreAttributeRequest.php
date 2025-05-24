@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Attribute;
+namespace App\Http\Requests\ProductAttribute;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class StoreAttributeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

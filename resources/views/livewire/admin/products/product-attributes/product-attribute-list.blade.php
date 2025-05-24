@@ -33,7 +33,7 @@
                 @include('partials.flash_messages')
                 <div class="table-responsive card">
                     <div class="py-3 mx-3 justify-content-start d-flex">
-                        <a href="{{ route('admin.attributes.create') }}"
+                        <a href="{{ route('admin.product-attributes.create') }}"
                             class="btn btn-primary shadow-none mb-0">
                             <i class='fas fa-sliders-h me-2'></i>Add Product Attribute
                         </a>
@@ -83,7 +83,7 @@
                                         {{ Carbon\Carbon::parse($attribute->created_at)->format('d.m.Y') }}</td>
                                     <td class="text-center w-10-perc">
                                         <div class="text-center">
-                                            <a href="{{ route('admin.attributes.edit', $attribute->id) }}"
+                                            <a href="{{ route('admin.product-attributes.edit', $attribute->id) }}"
                                                 type="button" class="btn btn-primary shadow-none">
                                                 <i class="fas fa-edit"></i></a>
                                         </div>

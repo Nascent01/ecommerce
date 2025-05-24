@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Attribute\StoreAttributeRequest;
-use App\Models\Product\Attribute;
+use App\Http\Requests\ProductAttribute\StoreAttributeRequest;
+use App\Models\Product\ProductAttribute;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -23,7 +23,7 @@ class ProductAttributeController extends Controller
      */
     public function create(): View
     {
-        return view('admin.products.product-attributes.product_attribute_edit', ['attribute' => new Attribute()]);
+        return view('admin.products.product-attributes.product_attribute_edit', ['productAttribute' => new ProductAttribute()]);
     }
 
     /**
@@ -31,26 +31,19 @@ class ProductAttributeController extends Controller
      */
     public function store(StoreAttributeRequest $request): RedirectResponse
     {
-        $attribute = Attribute::create($request->validated());
+        dd($request->all());
+        $attribute = ProductAttribute::create($request->validated());
 
         return redirect()->route('admin.product-attributes.edit', $attribute->id)
             ->with('success', 'Attribute created successfully!');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ProductAttribute $productAttribute): View
     {
-        //
+        return view('admin.products.product-attributes.product_attribute_edit', ['productAttribute' => $productAttribute]);
     }
 
     /**
