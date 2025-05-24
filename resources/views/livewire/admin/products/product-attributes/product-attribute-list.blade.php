@@ -7,11 +7,21 @@
             </div>
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-10">
+                    <div class="col-md-5">
                         <label for="search-name" class="form-label">Name</label>
                         <div class="input-group">
                             <input wire:model.live="name" class="form-control" id="search-name"
                                 placeholder="Search by name">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="search-active">Status</label>
+                            <select class="form-control" id="search-active" wire:model.live="isActive">
+                                <option value="">All</option>
+                                <option value="active">Show active</option>
+                                <option value="not-active">Show inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2 d-flex flex-column justify-content-end">
@@ -70,7 +80,7 @@
                                 <tr wire:key="{{ $attribute->id }}">
                                     <th class="text-center w-1-perc" scope="row">{{ $attribute->id }}</th>
                                     <td class="text-center w-20-perc">{{ $attribute->name }}</td>
-                                          <td class="text-center w-20-perc">{{ $attribute->weight }}</td>
+                                    <td class="text-center w-20-perc">{{ $attribute->weight }}</td>
                                     <td class="text-center w-1-perc">
                                         <button wire:click="toggleActive({{ $attribute->id }})"
                                             class="btn btn-icon btn-2 {{ $attribute->is_active ? 'btn-outline-success' : 'btn-outline-danger' }} shadow-none"
@@ -96,11 +106,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($attributes->hasPages())
-                        <div class="py-3 mx-3">
-                            <x-pagination :items="$attributes" position="justify-content-end" />
-                        </div>
-                    @endif
+                    <div class="py-3 mx-3">
+                        {{ $attributes->links('custom-pagination-links') }}
+                    </div>
                 </div>
             </div>
         </div>

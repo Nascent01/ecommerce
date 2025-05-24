@@ -43,14 +43,22 @@ class Product extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function scopeFilter($query, $name = null, $sku = null)
+    public function scopeFilter($query, $name = null, $sku = null, $isActive = null)
     {
-        if ($name) {
+        if (!empty($name)) {
             $query->where('name', 'like', '%' . $name . '%');
         }
 
-        if ($sku) {
+        if (!empty($sku)) {
             $query->where('sku', 'like', '%' . $sku . '%');
+        }
+
+        if (!empty($isActive)) {
+            if ($isActive === 'active') {
+                $query->where('is_active', 1);
+            } else {
+                $query->where('is_active', 0);
+            }
         }
 
         return $query;

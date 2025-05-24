@@ -34,10 +34,18 @@ class ProductAttribute extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function scopeFilter($query, $name = null)
+    public function scopeFilter($query, $name = null, $isActive = null)
     {
         if ($name) {
             $query->where('name', 'like', '%' . $name . '%');
+        }
+
+        if (!empty($isActive)) {
+            if ($isActive === 'active') {
+                $query->where('is_active', 1);
+            } else {
+                $query->where('is_active', 0);
+            }
         }
 
         return $query;

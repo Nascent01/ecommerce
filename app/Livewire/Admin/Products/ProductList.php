@@ -11,7 +11,7 @@ class ProductList extends Component
 {
     use Sortable, WithPagination;
 
-    public $name, $sku;
+    public $name, $sku, $isActive;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
 
@@ -28,7 +28,7 @@ class ProductList extends Component
 
     public function render()
     {
-        $productsQb = Product::filter($this->name, $this->sku);
+        $productsQb = Product::filter($this->name, $this->sku, $this->isActive);
 
         return view('livewire.admin.products.product-list', [
             'products' => $productsQb->orderBy($this->sortField, $this->sortDirection)->paginate(10),

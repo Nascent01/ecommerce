@@ -5,12 +5,13 @@ namespace App\Livewire\Admin\Products\ProductAttributes;
 use App\Models\Product\ProductAttribute;
 use App\Traits\Sortable;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductAttributeList extends Component
 {
-    use Sortable;
+    use Sortable, WithPagination;
 
-    public $name;
+    public $name, $isActive;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
 
@@ -27,7 +28,7 @@ class ProductAttributeList extends Component
 
     public function render()
     {
-        $productAttributesQb = ProductAttribute::filter($this->name);
+        $productAttributesQb = ProductAttribute::filter($this->name, $this->isActive);
 
         return view('livewire.admin.products.product-attributes.product-attribute-list', [
             'attributes' => $productAttributesQb->orderBy($this->sortField, $this->sortDirection)->paginate(20),

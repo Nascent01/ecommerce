@@ -7,11 +7,21 @@
             </div>
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-10">
+                    <div class="col-md-5">
                         <label for="search-name" class="form-label">Name</label>
                         <div class="input-group">
                             <input wire:model.live="name" class="form-control" id="search-name"
                                 placeholder="Search by name">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="search-active">Status</label>
+                            <select class="form-control" id="search-active" wire:model.live="isActive">
+                                <option value="">All</option>
+                                <option value="active">Show active</option>
+                                <option value="not-active">Show inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2 d-flex flex-column justify-content-end">
