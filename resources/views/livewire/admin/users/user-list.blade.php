@@ -103,11 +103,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($users->hasPages())
-                        <div class="py-3 mx-3">
-                            <x-pagination :items="$users" position="justify-content-end" />
-                        </div>
-                    @endif
+                    <div class="py-3 mx-3">
+                        {{ $users->links('custom-pagination-links') }}
+                    </div>
                 </div>
             </div>
         </div>

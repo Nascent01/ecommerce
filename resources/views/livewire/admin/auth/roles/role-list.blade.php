@@ -89,11 +89,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($roles->hasPages())
-                        <div class="py-3 mx-3">
-                            <x-pagination :items="$roles" position="justify-content-end" />
-                        </div>
-                    @endif
+                    <div class="py-3 mx-3">
+                        {{ $roles->links('custom-pagination-links') }}
+                    </div>
                 </div>
             </div>
         </div>

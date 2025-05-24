@@ -12,8 +12,8 @@ class ProductAttributeChoiceList extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    public $productAttribute, $choiceNameFilter;
-    public $productAttributeChoice;
+    public $productAttribute, $productAttributeChoice,  $choiceNameFilter;
+
     public $productAttributeChoiceName = '';
     public $editingChoiceId = null;
 
@@ -90,6 +90,7 @@ class ProductAttributeChoiceList extends Component
 
             if ($productsUsingChoice > 0) {
                 session()->flash('error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
+                $this->dispatch('alertHide');
                 return;
             }
 

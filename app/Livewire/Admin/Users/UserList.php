@@ -6,10 +6,11 @@ use App\Models\User\User;
 use App\Repositories\Auth\Role\RoleRepository;
 use App\Traits\Sortable;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserList extends Component
 {
-    use Sortable;
+    use Sortable, WithPagination;
 
     public $name, $email;
     public User $user;

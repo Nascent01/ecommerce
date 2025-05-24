@@ -9,8 +9,7 @@ use Livewire\WithPagination;
 
 class ProductCategoryList extends Component
 {
-    use Sortable;
-    use WithPagination;
+    use Sortable, WithPagination;
 
     public $name;
     public $sortField = 'created_at';

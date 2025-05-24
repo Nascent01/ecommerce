@@ -8,5 +8,4 @@
 
 @section('scripts')
     @parent
-    @vite('resources/js/admin/users/user-list.js')
 @endsection

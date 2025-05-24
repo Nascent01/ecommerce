@@ -5,10 +5,11 @@ namespace App\Livewire\Admin\Products;
 use App\Models\Product\Product;
 use App\Traits\Sortable;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductList extends Component
 {
-    use Sortable;
+    use Sortable, WithPagination;
 
     public $name, $sku;
     public $sortField = 'created_at';

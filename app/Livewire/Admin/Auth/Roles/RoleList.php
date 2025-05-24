@@ -6,10 +6,11 @@ use App\Models\Auth\Role\Role;
 use App\Repositories\Auth\Permission\PermissionRepository;
 use App\Traits\Sortable;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RoleList extends Component
 {
-    use Sortable;
+    use Sortable, WithPagination;
 
     public $name;
     public Role $role;
