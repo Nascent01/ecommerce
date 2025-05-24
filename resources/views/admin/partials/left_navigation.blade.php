@@ -4,8 +4,7 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset('themes/custom/images/Logo.png') }}" class="navbar-brand-img h-100"
-                alt="main_logo">
+            <img src="{{ asset('themes/custom/images/Logo.png') }}" class="navbar-brand-img h-100" alt="main_logo">
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -21,11 +20,11 @@
                     :link="route('admin.roles.index')" :active="str_contains($routeName, 'admin.roles') ? 1 : 0" />
             @endcan
 
-            <x-admin.left-navigation.nav-item title="Products" image="<i class='fas fa-box text-dark'></i>"
-                link="#" active="0" />
+            <x-admin.left-navigation.nav-item title="Products"
+                image="<i class='fa-solid fa-boxes-stacked text-dark'></i>" :link="route('admin.products.index')" :active="str_contains($routeName, 'admin.products') ? 1 : 0" />
 
             <x-admin.left-navigation.nav-item title="Product Categories"
-                image="<i class='fas fa-th-large text-dark'></i>" link="#" active="0" />
+                image="<i class='fas fa-th-large text-dark'></i>" :link="route('admin.product-categories.index')" :active="str_contains($routeName, 'admin.product-categories') ? 1 : 0" />
 
             <x-admin.left-navigation.nav-item title="Product Attributes"
                 image="<i class='fas fa-sliders-h text-dark'></i>" link="#" active="0" />

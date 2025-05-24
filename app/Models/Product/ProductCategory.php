@@ -33,4 +33,13 @@ class ProductCategory extends Model
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }
+
+     public function scopeFilter($query, $name = null)
+    {
+        if ($name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        }
+
+        return $query;
+    }
 }

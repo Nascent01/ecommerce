@@ -17,6 +17,6 @@ Route::name('admin.')->prefix('admin')->middleware('adminAuth')->group(function 
     Route::resource('roles', RoleController::class)->except(['show'])->middleware('can:manage-roles');
 
     Route::resource('products', ProductController::class)->except(['show'])->middleware('can:manage-products');
-    Route::resource('product-categories', ProductCategoryController::class)->except(['show'])->middleware('can:manage-product-categories');
+    Route::resource('product-categories', ProductCategoryController::class)->except(['show', 'destroy'])->middleware('can:manage-product-categories');
     Route::resource('product-attributes', Attribute::class)->except(['show'])->middleware('can:manage-attributes');
 });

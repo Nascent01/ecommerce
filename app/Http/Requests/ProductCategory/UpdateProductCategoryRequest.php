@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\ProductCategory;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class UpdateProductCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,19 +23,18 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
+            'name' =>  'required|string|max:255',
+            'slug' =>  [
+                'nullable',
                 'string',
-                'email',
                 'max:255',
-                'email' => Rule::unique('users')->ignore($this->user),
+                Rule::unique('product_categories')->ignore($this->product_category),
             ],
-            'password' => 'nullable|string|min:8|confirmed',
+            'is_active' => 'boolean',
         ];
     }
 
-    /**
+      /**
      * Get custom messages for validator errors.
      *
      * @return array
@@ -44,11 +43,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required',
-            'email.required' => 'An email is required',
-            'email.email' => 'Please enter a valid email address',
-            'email.unique' => 'This email is already registered',
-            'password.min' => 'Password must be at least 8 characters',
-            'password.confirmed' => 'Password confirmation does not match',
+            'slug.unique' => 'The slug has already been taken',
+            'is_active.boolean' => 'The is_active field must be true or false',
         ];
     }
 }
