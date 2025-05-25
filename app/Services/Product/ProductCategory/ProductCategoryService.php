@@ -6,12 +6,18 @@ use App\Models\Product\ProductCategory;
 
 class ProductCategoryService
 {
-    public function create($data): ProductCategory
+    /**
+     * Create a new product category.
+     */
+    public function create(array $data): ProductCategory
     {
         return ProductCategory::create($data);
     }
 
-    public function update(ProductCategory $productCategory, $data): ProductCategory
+    /**
+     * Update an existing product category.
+     */
+    public function update(ProductCategory $productCategory, array $data): ProductCategory
     {
         $productCategory->update($data);
         return $productCategory;

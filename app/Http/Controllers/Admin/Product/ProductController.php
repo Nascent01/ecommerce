@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product\Product;
-use Illuminate\Http\Request;
+use App\Services\Product\ProductHandler;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    public function __construct(
+        private ProductHandler $productHandler
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
@@ -28,9 +34,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $product = $this->productHandler->handleStore($request->validated());
+
+        return redirect()->route('admin.products.edit', $product->id)
+            ->with('success', 'Product created successfully!');
     }
 
     /**
@@ -44,9 +53,12 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product = $this->productHandler->handleUpdate($request->validated(), $product);
+
+        return redirect()->route('admin.products.edit', $product->id)
+            ->with('success', 'Product updated successfully!');
     }
 
     /**
