@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductAttribute\StoreAttributeRequest;
+use App\Http\Requests\ProductAttribute\StoreProductAttributeRequest;
+use App\Http\Requests\ProductAttribute\UpdateProductAttributeRequest;
 use App\Models\Product\ProductAttribute;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -29,12 +30,11 @@ class ProductAttributeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAttributeRequest $request): RedirectResponse
+    public function store(StoreProductAttributeRequest $request): RedirectResponse
     {
-        dd($request->all());
-        $attribute = ProductAttribute::create($request->validated());
+        $productAttribute = ProductAttribute::create($request->validated());
 
-        return redirect()->route('admin.product-attributes.edit', $attribute->id)
+        return redirect()->route('admin.product-attributes.edit', $productAttribute->id)
             ->with('success', 'Attribute created successfully!');
     }
 
@@ -49,15 +49,7 @@ class ProductAttributeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function update(UpdateProductAttributeRequest $request, ProductAttribute $productAttribute)
     {
         //
     }

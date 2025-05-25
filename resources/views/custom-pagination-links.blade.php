@@ -2,9 +2,10 @@
     $current = $paginator->currentPage();
     $last = $paginator->lastPage();
     $range = 1;
+    $hasResults = $paginator->count() > 0; 
 @endphp
 
-@if ($paginator->hasPages())
+@if ($paginator->hasPages() && $hasResults)
     <ul class="pagination pagination-primary mb-0 {{ $position ?? '' }}">
         <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
             <button class="page-link px-3 shadow-none" wire:click="previousPage" wire:loading.attr="disabled" rel="prev"

@@ -57,14 +57,14 @@
                             <div class="col-md-1">
                                 <button wire:click="openProductAttributeChoiceModal({{ $choice->id }})"
                                     data-bs-toggle="modal" data-bs-target="#editChoiceModal" type="button"
-                                    class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-sm transition-all">
+                                    class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-sm">
                                     <i class="fas fa-edit fs-6"></i>
                                     <span class="fw-medium">Edit</span>
                                 </button>
                             </div>
                             <div class="col-md-1">
                                 <button wire:click="deleteChoice({{ $choice->id }})" type="button"
-                                    class="btn btn-outline-danger btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-sm transition-all">
+                                    class="btn btn-outline-danger btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-sm">
                                     <i class="fas fa-trash"></i>
                                     <span class="fw-medium">Delete</span>
                                 </button>
