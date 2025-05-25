@@ -1,5 +1,5 @@
 <div>
-    @include('partials.flash_messages')
+    @include('partials.flash_messages_livewire')
     <div class="mt-5">
         <h5>Product Attribute Choices</h5>
         <div class="container-fluid py-4">

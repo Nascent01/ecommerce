@@ -22,7 +22,23 @@ class StoreProductAttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' =>  'required|string|max:255',
+            'slug' =>  'nullable|string|max:255|unique:product_attributes,slug',
+            'is_active' => 'boolean',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'A name is required',
+            'slug.unique' => 'The slug has already been taken',
+            'is_active.boolean' => 'The is_active field must be true or false',
         ];
     }
 }

@@ -68,7 +68,7 @@ class ProductAttributeChoiceList extends Component
             $this->resetForm();
         }
 
-        session()->flash('success', $message);
+        session()->flash('livewire-success', $message);
         $this->dispatch('alertHide');
     }
 
@@ -89,7 +89,7 @@ class ProductAttributeChoiceList extends Component
             })->count();
 
             if ($productsUsingChoice > 0) {
-                session()->flash('error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
+                session()->flash('livewire-error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
                 $this->dispatch('alertHide');
                 return;
             }
@@ -97,13 +97,13 @@ class ProductAttributeChoiceList extends Component
             $choiceName = $choice->name;
             $choice->delete();
 
-            session()->flash('success', "Choice '{$choiceName}' has been deleted successfully.");
+            session()->flash('livewire-success', "Choice '{$choiceName}' has been deleted successfully.");
 
             $this->dispatch('alertHide');
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            session()->flash('error', 'Choice not found.');
+            session()->flash('livewire-error', 'Choice not found.');
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting the choice: ' . $e->getMessage());
+            session()->flash('livewire-error', 'An error occurred while deleting the choice: ' . $e->getMessage());
         }
     }
 
