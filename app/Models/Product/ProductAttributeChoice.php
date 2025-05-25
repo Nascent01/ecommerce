@@ -32,10 +32,19 @@ class ProductAttributeChoice extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function scopeFilter($query, $name = null)
+    public function scopeFilter($query, $name = null): \Illuminate\Database\Eloquent\Builder
     {
         return $query->when($name, function ($q) use ($name) {
             $q->where('name', 'like', '%' . $name . '%');
         });
+    }
+
+    public function productsUsingThisChoiceCount(): int
+    {
+        $choiceId = $this->id;
+
+        return Product::whereHas('productAttributeChoices', function ($query) use ($choiceId) {
+            $query->where('product_attribute_choice_id', $choiceId);
+        })->count();
     }
 }

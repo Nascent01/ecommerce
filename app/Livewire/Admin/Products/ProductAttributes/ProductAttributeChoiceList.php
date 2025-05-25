@@ -84,9 +84,7 @@ class ProductAttributeChoiceList extends Component
         try {
             $choice = ProductAttributeChoice::findOrFail($choiceId);
 
-            $productsUsingChoice = Product::whereHas('productAttributeChoices', function ($query) use ($choiceId) {
-                $query->where('product_attribute_choice_id', $choiceId);
-            })->count();
+            $productsUsingChoice = $choice->productsCount();
 
             if ($productsUsingChoice > 0) {
                 session()->flash('livewire-error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
@@ -113,7 +111,6 @@ class ProductAttributeChoiceList extends Component
             ->productAttributeChoices()
             ->filter($this->choiceNameFilter)
             ->paginate(10);
-
 
         return view('livewire.admin.products.product-attributes.product-attribute-choice-list', [
             'productAttributeChoices' => $productAttributeChoices,
