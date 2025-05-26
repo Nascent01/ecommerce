@@ -20,7 +20,7 @@ class ProductCategory extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_product_category');
     }
 
     /**
@@ -40,7 +40,7 @@ class ProductCategory extends Model
             $query->where('name', 'like', '%' . $name . '%');
         }
 
-         if (!empty($isActive)) {
+        if (!empty($isActive)) {
             if ($isActive === 'active') {
                 $query->where('is_active', 1);
             } else {

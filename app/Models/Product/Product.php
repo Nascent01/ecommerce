@@ -24,12 +24,12 @@ class Product extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(ProductCategory::class);
+        return $this->belongsToMany(ProductCategory::class, 'product_product_category');
     }
 
     public function productAttributeChoices(): BelongsToMany
     {
-         return $this->belongsToMany(ProductAttributeChoice::class, 'product_product_attribute_choice');
+        return $this->belongsToMany(ProductAttributeChoice::class, 'product_product_attribute_choice');
     }
 
     /**

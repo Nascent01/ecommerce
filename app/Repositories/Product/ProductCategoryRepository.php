@@ -10,4 +10,9 @@ class ProductCategoryRepository
     {
         return ProductCategory::firstWhere('name', $name);
     }
+
+    public function allProductCategories()
+    {
+        return ProductCategory::all();
+    }
 }

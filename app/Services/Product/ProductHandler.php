@@ -15,7 +15,16 @@ class ProductHandler
      */
     public function handleStore(array $data): Product
     {
-        return $this->productService->create($data);
+        $productCategoryIds = $data['product_category_ids'] ?? [];
+        unset($data['product_category_ids']);
+
+        $product = $this->productService->create($data);
+
+        if (!empty($productCategoryIds)) {
+            $product->categories()->sync($productCategoryIds);
+        }
+
+        return $product;
     }
 
     /**
@@ -23,6 +32,13 @@ class ProductHandler
      */
     public function handleUpdate(array $data, Product $product): Product
     {
-        return $this->productService->update($product, $data);
+        $productCategoryIds = $data['product_category_ids'] ?? [];
+        unset($data['product_category_ids']);
+
+        $this->productService->update($product, $data);
+
+        $product->categories()->sync($productCategoryIds);
+
+        return $product;
     }
 }

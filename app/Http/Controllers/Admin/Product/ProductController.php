@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product\Product;
+use App\Models\Product\ProductCategory;
+use App\Repositories\Product\ProductCategoryRepository;
 use App\Services\Product\ProductHandler;
 use Illuminate\View\View;
 
@@ -28,7 +30,10 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('admin.products.product_edit', ['product' => new Product()]);
+        return view('admin.products.product_edit', [
+            'product' => new Product(),
+            'categories' => (new ProductCategoryRepository())->allProductCategories(),
+        ]);
     }
 
     /**
@@ -47,7 +52,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('admin.products.product_edit', ['product' => $product]);
+        $product->load('categories');
+
+        return view('admin.products.product_edit', [
+            'product' => $product,
+            'categories' => (new ProductCategoryRepository())->allProductCategories(),
+            'selectedCategoryIds' => $product->categories->pluck('id')->toArray(),
+        ]);
     }
 
     /**

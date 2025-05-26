@@ -28,7 +28,7 @@ class StoreProductCategoryRequest extends FormRequest
         ];
     }
 
-     /**
+    /**
      * Get custom messages for validator errors.
      *
      * @return array
