@@ -27,7 +27,9 @@
                             <div class="tab-content" id="pills-tabContent">
                                 @include('admin.products._product_edit_basic_info')
 
-                                @include('admin.products._product_edit_attributes')
+                                @if ($product->id)
+                                    @include('admin.products._product_edit_attribute_choices')
+                                @endif
                             </div>
 
                             <hr class="horizontal dark">
