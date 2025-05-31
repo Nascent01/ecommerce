@@ -2,10 +2,15 @@
 
 namespace App\Services\Product;
 
+use App\Constants\FilePath\FilePathConstant;
 use App\Models\Product\Product;
+use App\Traits\ImageUploadTrait;
+use Illuminate\Support\Arr;
 
 class ProductHandler
 {
+    use ImageUploadTrait;
+
     public function __construct(
         private ProductService $productService
     ) {}
@@ -15,13 +20,16 @@ class ProductHandler
      */
     public function handleStore(array $data): Product
     {
-        $productCategoryIds = $data['product_category_ids'] ?? [];
-        unset($data['product_category_ids']);
+        $dataToInsert = Arr::except($data, ['product_category_ids', 'image']);
 
-        $product = $this->productService->create($data);
+        $product = $this->productService->create($dataToInsert);
 
-        if (!empty($productCategoryIds)) {
+        if (!empty($productCategoryIds) && count($data['product_category_ids']) > 0) {
             $product->categories()->sync($productCategoryIds);
+        }
+
+        if (isset($data['image'])) {
+            $this->uploadImage($data['image'], FilePathConstant::PRODUCT_IMAGE_PATH, $product, 'image');
         }
 
         return $product;
@@ -32,12 +40,17 @@ class ProductHandler
      */
     public function handleUpdate(array $data, Product $product): Product
     {
-        $productCategoryIds = $data['product_category_ids'] ?? [];
-        unset($data['product_category_ids']);
+        $dataToInsert = Arr::except($data, ['product_category_ids', 'image']);
 
-        $this->productService->update($product, $data);
+        $this->productService->update($product, $dataToInsert);
 
-        $product->categories()->sync($productCategoryIds);
+         if (!empty($productCategoryIds) && count($data['product_category_ids']) > 0) {
+            $product->categories()->sync($productCategoryIds);
+        }
+
+         if (isset($data['image'])) {
+            $this->uploadImage($data['image'], FilePathConstant::PRODUCT_IMAGE_PATH, $product, 'image');
+        }
 
         return $product;
     }
