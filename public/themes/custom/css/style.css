@@ -1,29 +1,29 @@
 .w-1-perc {
-    width: 1%;
+  width: 1%;
 }
 
 .w-10-perc {
-    width: 10%;
+  width: 10%;
 }
 
 .w-20-perc {
-    width: 20%;
+  width: 20%;
 }
 
 .w-40-perc {
-    width: 40%;
+  width: 40%;
 }
 
-  .table {
-    border-collapse: collapse !important;
-  }
+.table {
+  border-collapse: collapse !important;
+}
 
- .table-bordered th,
-  .table-bordered td {
-    border: 1px solid #ddd !important;
-  }
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #ddd !important;
+}
 
-  .table-bordered {
+.table-bordered {
   border: 1px solid #dee2e6;
 }
 
@@ -42,7 +42,7 @@
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
- 
+
 .table th,
 .table td {
   padding: 0.75rem;
