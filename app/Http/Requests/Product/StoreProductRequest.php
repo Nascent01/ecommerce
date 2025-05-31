@@ -29,6 +29,7 @@ class StoreProductRequest extends FormRequest
             'is_active' => 'boolean',
             'product_category_ids' => 'nullable|array',
             'product_category_ids.*' => 'exists:product_categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
 
@@ -48,6 +49,7 @@ class StoreProductRequest extends FormRequest
             'product_category_ids.array' => 'The product categories must be an array',
             'product_category_ids.*.exists' => 'One or more selected product categories do not exist',
             'product_category_ids.required' => 'At least one product category must be selected',
+            'image.image' => 'The image must be a valid image file',
         ];
     }
 }

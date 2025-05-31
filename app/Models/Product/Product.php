@@ -63,4 +63,9 @@ class Product extends Model
 
         return $query;
     }
+
+    public function getImage(): string
+    {
+        return $this->image ? asset(\App\Constants\FilePath\FilePathConstant::PRODUCT_IMAGE_PATH . $this->image) : asset('themes/custom/images/placeholder-image.jpg');
+    }
 }

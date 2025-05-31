@@ -70,7 +70,7 @@ class ImportProductsHandler
             'sku' => $product['objectId'],
             'name' => $productName,
             'slug' => $slug,
-            'image' => 'placeholder-image.png',
+            'image' => null,
             'price' => fake()->randomFloat(2, 100, 1000),
             'is_active' => 1,
             'created_at' => now(),
