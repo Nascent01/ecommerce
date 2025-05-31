@@ -74,8 +74,8 @@
                         <tbody>
                             @forelse ($productCategories as $productCategory)
                                 <tr wire:key="{{ $productCategory->id }}">
-                                    <th class="text-center w-1-perc" scope="row">{{ $productCategory->id }}</th>
-                                    <td class="text-center w-20-perc">{{ $productCategory->name }}</td>
+                                    <th class="text-center w-5-perc" scope="row">{{ $productCategory->id }}</th>
+                                    <td class="text-center w-40-perc">{{ $productCategory->name }}</td>
                                     <td class="text-center w-1-perc">
                                         <button wire:click="toggleActive({{ $productCategory->id }})"
                                             class="btn btn-icon btn-2 {{ $productCategory->is_active ? 'btn-outline-success' : 'btn-outline-danger' }} shadow-none"

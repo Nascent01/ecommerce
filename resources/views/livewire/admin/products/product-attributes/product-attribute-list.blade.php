@@ -78,7 +78,7 @@
                         <tbody>
                             @forelse ($attributes as $attribute)
                                 <tr wire:key="{{ $attribute->id }}">
-                                    <th class="text-center w-1-perc" scope="row">{{ $attribute->id }}</th>
+                                    <th class="text-center w-5-perc" scope="row">{{ $attribute->id }}</th>
                                     <td class="text-center w-20-perc">{{ $attribute->name }}</td>
                                     <td class="text-center w-20-perc">{{ $attribute->weight }}</td>
                                     <td class="text-center w-1-perc">

@@ -31,7 +31,7 @@
                             </div>
 
                             <hr class="horizontal dark">
-                            <div class="d-flex justify-content-center">
+                            <div class="row mt-4 justify-content-center">
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary">
                                         {{ $product->id ? 'Update' : 'Create' }}
@@ -48,3 +48,16 @@
         </div>
     </div>
 @endsection
+
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imagePreview = document.querySelector('.imagePreview');
+                imagePreview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

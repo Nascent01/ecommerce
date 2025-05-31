@@ -70,7 +70,7 @@
                         <tbody>
                             @forelse ($users as $user)
                                 <tr wire:key="{{ $user->id }}">
-                                    <th class="text-center w-1-perc" scope="row">{{ $user->id }}</th>
+                                    <th class="text-center w-5-perc" scope="row">{{ $user->id }}</th>
                                     <td class="text-center w-20-perc">{{ $user->name }}</td>
                                     <td class="text-center w-40-perc">{{ $user->email }}</td>
                                     <td class="text-center w-20-perc">

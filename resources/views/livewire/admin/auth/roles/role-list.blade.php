@@ -63,7 +63,7 @@
                         <tbody>
                             @forelse ($roles as $role)
                                 <tr wire:key="{{ $role->id }}">
-                                    <th class="text-center w-1-perc" scope="row">{{ $role->id }}</th>
+                                    <th class="text-center w-5-perc" scope="row">{{ $role->id }}</th>
                                     <td class="text-center w-20-perc">{{ $role->name }}</td>
                                     <td class="text-center w-40-perc">{{ $role->description }}</td>
                                     <td class="text-center w-20-perc">

@@ -7,21 +7,23 @@
             </div>
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label for="search-name" class="form-label">Name</label>
                         <div class="input-group">
                             <input wire:model.live="name" class="form-control" id="search-name"
                                 placeholder="Search by name">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label for="search-sku" class="form-label">Sku</label>
                         <div class="input-group">
                             <input wire:model.live="sku" class="form-control" id="search-sku"
                                 placeholder="Search by sku">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label for="search-active">Status</label>
                             <select class="form-control" id="search-active" wire:model.live="isActive">
@@ -38,7 +40,6 @@
                             <i class="fas fa-undo me-2"></i>Reset
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -89,15 +90,15 @@
                         <tbody>
                             @forelse ($products as $product)
                                 <tr wire:key="{{ $product->id }}">
-                                    <th class="text-center w-1-perc" scope="row">{{ $product->id }}</th>
+                                    <th class="text-center w-5-perc" scope="row">{{ $product->id }}</th>
                                     <td class="text-center w-20-perc">
-                                        <img src="{{ asset('themes/custom/images/placeholder-image.jpg') }}"
-                                            alt="No Image" class="img-fluid rounded shadow-sm product-thumbnail"
-                                            style="height: auto; object-fit: contain; background-color: #f8f9fa;">
+                                        <img src="{{ $product->getImage() }}" alt="{{ $product->name }}"
+                                            class="img-fluid rounded shadow-sm product-thumbnail"
+                                            style="width: 300px; height: 200px; overflow: hidden;">
                                     </td>
-                                    <td class="text-center w-20-perc">{{ $product->sku }}</td>
-                                    <td class="text-center w-20-perc">{{ $product->name }}</td>
-                                    <td class="text-center w-20-perc">{{ $product->price }}</td>
+                                    <td class="text-center w-10-perc">{{ $product->sku }}</td>
+                                    <td class="text-center w-10-perc">{{ $product->name }}</td>
+                                    <td class="text-center w-10-perc">{{ $product->price }}</td>
                                     <td class="text-center w-1-perc">
                                         <button wire:click="toggleActive({{ $product->id }})"
                                             class="btn btn-icon btn-2 {{ $product->is_active ? 'btn-outline-success' : 'btn-outline-danger' }} shadow-none"
