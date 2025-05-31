@@ -16,7 +16,6 @@
     <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('themes/custom/css/style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('themes/custom/css/bootstrap.css') }}" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('themes/custom/css/soft-ui-dashboard.css') }}" rel="stylesheet" />
 
     @livewireStyles
