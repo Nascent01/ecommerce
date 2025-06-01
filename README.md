@@ -1,35 +1,55 @@
-Requirements:
+## Requirements
 
-PHP 8.4.4 or higher
-Composer
-Node.js & npm (for frontend assets)
-MySQL database
+- **PHP**: 8.4.4 or higher
+- **Composer**: Latest version
+- **Node.js & npm**: For frontend asset compilation
+- **MySQL**: Database server
 
-1. Installation:
+## Installation
 
+### 1. Clone the Repository
+```bash
 git clone https://github.com/Nascent01/ecommerce.git
 cd ecommerce
+```
 
-2. Install PHP dependencies:
-
+### 2. Install Dependencies
+```bash
+# Install PHP dependencies
 composer install
 
-3. Install Node.js dependencies:
-
+# Install Node.js dependencies
 npm install
+```
 
-4. Create environment file and configure your database settings
+### 3. Environment Configuration
+```bash
+# Copy the environment file
+cp .env.example .env
 
-5. Generate application key:
+# Configure your database settings in .env file
+# Update the following variables:
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=your_database_name
+# DB_USERNAME=your_username
+# DB_PASSWORD=your_password
+```
 
+### 4. Application Setup
+```bash
+# Generate application key
 php artisan key:generate
 
-6. Run initial command - php artisan command:initial-command
+# Run initial setup command (creates database tables and seeds data)
+php artisan command:initial-command
+```
 
-This will insert all the necessary data into the database.
-
-7. Build frontend assets:
-
+### 5. Build Frontend Assets
+```bash
 npm run build
+```
 
-8. You can find the admin user credentials in the DatabaseSeeder class, after loging in you will have access to the admin dashboard.
+## 6. Getting Started
+Admin user credentials can be found in the `DatabaseSeeder` class. After logging in with these credentials, you'll have access to the admin dashboard.
