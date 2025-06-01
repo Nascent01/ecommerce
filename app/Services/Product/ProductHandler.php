@@ -24,8 +24,8 @@ class ProductHandler
 
         $product = $this->productService->create($dataToInsert);
 
-        if (!empty($productCategoryIds) && count($data['product_category_ids']) > 0) {
-            $product->categories()->sync($productCategoryIds);
+        if (!empty($data['product_category_ids']) && count($data['product_category_ids']) > 0) {
+            $product->categories()->sync($data['product_category_ids']);
         }
 
         if (isset($data['image'])) {
@@ -44,11 +44,11 @@ class ProductHandler
 
         $this->productService->update($product, $dataToInsert);
 
-         if (!empty($productCategoryIds) && count($data['product_category_ids']) > 0) {
-            $product->categories()->sync($productCategoryIds);
+        if (!empty($data['product_category_ids']) && count($data['product_category_ids']) > 0) {
+            $product->categories()->sync($data['product_category_ids']);
         }
 
-         if (isset($data['image'])) {
+        if (isset($data['image'])) {
             $this->uploadImage($data['image'], FilePathConstant::PRODUCT_IMAGE_PATH, $product, 'image');
         }
 

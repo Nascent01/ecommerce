@@ -70,15 +70,22 @@
                                         {{ Carbon\Carbon::parse($role->created_at)->format('d.m.Y') }}</td>
                                     <td class="text-center w-20-perc">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-primary shadow-none">
-                                                <i class="fas fa-edit"></i></button>
+                                            <a href="{{ route('admin.roles.edit', $role->id) }}" type="button"
+                                                class="btn btn-primary shadow-none">
+                                                <i class="fas fa-edit"></i></a>
                                             <button wire:click="openRolePermissionsModal({{ $role->id }})"
                                                 data-bs-toggle="modal" data-bs-target="#assaignPermissionModal"
                                                 type="button" class="btn btn-info shadow-none">
                                                 <i class="fas fa-user-cog"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger shadow-none"><i
-                                                    class="fas fa-trash"></i></button>
+                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger shadow-none"
+                                                    onclick="return confirm('Are you sure you want to delete this role?')"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

@@ -48,7 +48,6 @@ class StoreProductRequest extends FormRequest
             'sku.unique' => 'The SKU has already been taken',
             'product_category_ids.array' => 'The product categories must be an array',
             'product_category_ids.*.exists' => 'One or more selected product categories do not exist',
-            'product_category_ids.required' => 'At least one product category must be selected',
             'image.image' => 'The image must be a valid image file',
         ];
     }

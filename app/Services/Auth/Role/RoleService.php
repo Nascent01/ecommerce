@@ -6,8 +6,14 @@ use App\Models\Auth\Role\Role;
 
 class RoleService
 {
-    public function create($array)
+    public function create($array): Role
     {
-        Role::create($array);
+        return Role::create($array);
+    }
+
+    public function update(Role $role, $data): Role
+    {
+        $role->update($data);
+        return $role;
     }
 }
