@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Products\ProductAttributes;
 
-use App\Models\Product\Product;
 use App\Models\Product\ProductAttributeChoice;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -81,28 +80,22 @@ class ProductAttributeChoiceList extends Component
 
     public function deleteChoice($choiceId)
     {
-        try {
-            $choice = ProductAttributeChoice::findOrFail($choiceId);
+        $choice = ProductAttributeChoice::findOrFail($choiceId);
 
-            $productsUsingChoice = $choice->productsCount();
+        $productsUsingChoice = $choice->productsUsingThisChoiceCount();
 
-            if ($productsUsingChoice > 0) {
-                session()->flash('livewire-error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
-                $this->dispatch('alertHide');
-                return;
-            }
-
-            $choiceName = $choice->name;
-            $choice->delete();
-
-            session()->flash('livewire-success', "Choice '{$choiceName}' has been deleted successfully.");
-
+        if ($productsUsingChoice > 0) {
+            session()->flash('livewire-error', 'Cannot delete choice. It is being used by ' . $productsUsingChoice . ' product(s).');
             $this->dispatch('alertHide');
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            session()->flash('livewire-error', 'Choice not found.');
-        } catch (\Exception $e) {
-            session()->flash('livewire-error', 'An error occurred while deleting the choice: ' . $e->getMessage());
+            return;
         }
+
+        $choiceName = $choice->name;
+        $choice->delete();
+
+        session()->flash('livewire-success', "Choice '{$choiceName}' has been deleted successfully.");
+
+        $this->dispatch('alertHide');
     }
 
     public function render()
@@ -110,6 +103,7 @@ class ProductAttributeChoiceList extends Component
         $productAttributeChoices = $this->productAttribute
             ->productAttributeChoices()
             ->filter($this->choiceNameFilter)
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('livewire.admin.products.product-attributes.product-attribute-choice-list', [

@@ -63,12 +63,11 @@ class ProductEditAttributeChoices extends Component
                 $this->resetSelection();
 
                 session()->flash('livewire-success', 'Attribute choice attached successfully!');
-           
-             } else {
-                session()->flash('lievewire-error', 'This attribute choice is already attached!');
+            } else {
+                session()->flash('livewire-error', 'This attribute choice is already attached!');
             }
         }
-         $this->dispatch('alertHide');
+        $this->dispatch('alertHide');
     }
 
     public function detachChoice($choiceId)
@@ -118,9 +117,9 @@ class ProductEditAttributeChoices extends Component
                 $query->where('name', 'like', '%' . $this->nameFilter . '%')
                     ->orWhereHas('productAttribute', function ($subQuery) {
                         $subQuery->where('name', 'like', '%' . $this->nameFilter . '%');
-                });
-        });
-    }
+                    });
+            });
+        }
 
         return $attributeChoicesQb->paginate(5);
     }

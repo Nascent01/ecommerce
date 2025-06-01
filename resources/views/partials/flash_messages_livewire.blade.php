@@ -3,7 +3,7 @@
         color="alert-success" />
 @endif
 
-@if (session('lievewire-error'))
-    <x-flash-message :message="session('lievewire-error')" type="danger" icon="<i class='fa-solid fa-circle-exclamation'></i>"
+@if (session('livewire-error'))
+    <x-flash-message :message="session('livewire-error')" type="danger" icon="<i class='fa-solid fa-circle-exclamation'></i>"
         color="alert-danger" />
 @endif

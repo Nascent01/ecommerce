@@ -1,5 +1,4 @@
 <div>
-    @include('partials.flash_messages_livewire')
     <div class="mt-5">
         <h5>Product Attribute Choices</h5>
         <div class="container-fluid py-4">
@@ -37,9 +36,11 @@
             </button>
         </div>
 
+        @include('partials.flash_messages_livewire')
+
         @if (!empty($productAttributeChoices))
             @foreach ($productAttributeChoices as $choice)
-                <div class="card mb-3 shadow-sm border-0">
+                <div ire:key="choice-{{ $choice->id }}" class="card mb-3 shadow-sm border-0">
                     <div class="card-body">
                         <div class="row align-items-end">
                             <div class="col-md-5 mb-3">
