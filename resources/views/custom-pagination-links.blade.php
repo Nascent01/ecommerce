@@ -8,7 +8,7 @@
 @if ($paginator->hasPages() && $hasResults)
     <ul class="pagination pagination-primary mb-0 {{ $position ?? '' }}">
         <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
-            <button class="page-link px-3 shadow-none" wire:click="previousPage" wire:loading.attr="disabled" rel="prev"
+            <button type="button" class="page-link px-3 shadow-none" wire:click="previousPage" wire:loading.attr="disabled" rel="prev"
                 aria-label="Previous" @if ($paginator->onFirstPage()) disabled @endif>
                 <i class="fas fa-arrow-left"></i>
             </button>
@@ -17,7 +17,7 @@
         @for ($page = 1; $page <= $last; $page++)
             @if ($page == 1 || $page == $last || ($page >= $current - $range && $page <= $current + $range))
                 <li class="page-item {{ $page == $current ? 'active' : '' }}">
-                    <button class="page-link px-3 shadow-none" wire:click="gotoPage({{ $page }})"
+                    <button type="button" class="page-link px-3 shadow-none" wire:click="gotoPage({{ $page }})"
                         wire:loading.attr="disabled">
                         {{ $page }}
                     </button>
@@ -32,7 +32,7 @@
         @endfor
 
         <li class="page-item {{ $paginator->hasMorePages() ? '' : 'disabled' }}">
-            <button class="page-link px-3 shadow-none" wire:click="nextPage" wire:loading.attr="disabled" rel="next"
+            <button type="button" class="page-link px-3 shadow-none" wire:click="nextPage" wire:loading.attr="disabled" rel="next"
                 aria-label="Next" @if (!$paginator->hasMorePages()) disabled @endif>
                 <i class="fas fa-arrow-right"></i>
             </button>

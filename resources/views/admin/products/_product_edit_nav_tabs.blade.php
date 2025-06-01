@@ -10,7 +10,7 @@
             <li class="nav-item">
                 <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#product-attribute-choices-tab"
                     role="tab" aria-controls="code" aria-selected="false">
-                    <i class="fas fa-tags"></i> Product Attributes
+                    <i class="fas fa-tags"></i> Product Attribute Choices
                 </a>
             </li>
         @endif
