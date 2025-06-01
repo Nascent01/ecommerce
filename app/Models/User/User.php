@@ -79,9 +79,4 @@ class User extends Authenticatable
 
         return $query;
     }
-
-    public function scopeNotDeleted($query)
-    {
-        return $query->whereNull('deleted_at');
-    }
 }

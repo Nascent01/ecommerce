@@ -73,6 +73,13 @@
 
                 <div class="col-md-8">
                     <label for="image" class="form-control-label">Product Image</label>
+                    @if (isset($product) && !empty($product->image))
+                        <div id="currentImageName" class="mb-2">
+                            <small class="text-muted">
+                                <i class="fas fa-image"></i> Current: {{ $product->image }}
+                            </small>
+                        </div>
+                    @endif
                     <input type="file" onchange="previewImage(this)" class="form-control" name="image"
                         id="image" accept="image/*">
                     @error('image')

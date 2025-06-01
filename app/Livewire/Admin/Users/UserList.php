@@ -44,7 +44,7 @@ class UserList extends Component
 
     public function render()
     {
-        $usersQb = User::filter($this->name, $this->email)->notDeleted();
+        $usersQb = User::filter($this->name, $this->email);
 
         return view('livewire.admin.users.user-list', [
             'users' => $usersQb->orderBy($this->sortField, $this->sortDirection)->paginate(10),

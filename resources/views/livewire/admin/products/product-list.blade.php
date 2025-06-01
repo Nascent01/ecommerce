@@ -62,7 +62,7 @@
                                     ID
                                     <x-sort-indicator field="id" :sortField="$sortField" :sortDirection="$sortDirection" />
                                 </th>
-                                <th class="text-center cursor-pointer">Image</th>
+                                <th class="text-center">Image</th>
                                 <th wire:click.prevent="sortBy('sku')" class="text-center cursor-pointer"
                                     scope="col">Sku
                                     <x-sort-indicator field="sku" :sortField="$sortField" :sortDirection="$sortDirection" />

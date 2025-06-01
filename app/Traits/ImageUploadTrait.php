@@ -12,7 +12,7 @@ trait ImageUploadTrait
         mkdir($fullPath, 0755, true);
     }
     
-    $imageName = time() . '.' . $image->getClientOriginalExtension();
+    $imageName = time() . '_' . $image->getClientOriginalName();
     $image->move($fullPath, $imageName);
     
     $model->$columnName = $imageName;

@@ -10,8 +10,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Product extends Model
 {
-    use HasSlug;
-    use SoftDeletes;
+    use HasSlug, SoftDeletes;
 
     protected $fillable = [
         'sku',
