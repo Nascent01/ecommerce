@@ -98,7 +98,8 @@
                                     </td>
                                     <td class="text-center w-10-perc">{{ $product->sku }}</td>
                                     <td class="text-center w-10-perc">{{ $product->name }}</td>
-                                    <td class="text-center w-10-perc">{{ $product->price }}</td>
+                                    <td class="text-center w-10-perc">
+                                        {{ priceAndCurrencyFormat($product->price, app()->getLocale()) }}</td>
                                     <td class="text-center w-1-perc">
                                         <button wire:click="toggleActive({{ $product->id }})"
                                             class="btn btn-icon btn-2 {{ $product->is_active ? 'btn-outline-success' : 'btn-outline-danger' }} shadow-none"
