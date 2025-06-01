@@ -1,0 +1,22 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-CWttreEn.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/admin/users/user-list.js": {
+    "file": "assets/user-list-x_loqQSP.js",
+    "name": "user-list",
+    "src": "resources/js/admin/users/user-list.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DAoQiOVR.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/admin/users/user-list.js"
+    ]
+  }
+}
