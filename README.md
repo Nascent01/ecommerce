@@ -46,10 +46,5 @@ php artisan key:generate
 php artisan command:initial-command
 ```
 
-### 5. Build Frontend Assets
-```bash
-npm run build
-```
-
-## 6. Getting Started
+## 5. Getting Started
 Admin user credentials can be found in the `DatabaseSeeder` class. After logging in with these credentials, you'll have access to the admin dashboard.
