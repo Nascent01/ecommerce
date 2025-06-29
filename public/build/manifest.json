@@ -1,22 +1,18 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CWttreEn.css",
+    "file": "assets/app-D1koEzQg.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/js/admin/users/user-list.js": {
-    "file": "assets/user-list-x_loqQSP.js",
-    "name": "user-list",
-    "src": "resources/js/admin/users/user-list.js",
-    "isDynamicEntry": true
+  "resources/css/soft-ui-dashboard.css": {
+    "file": "assets/soft-ui-dashboard-w486Kfbk.css",
+    "src": "resources/css/soft-ui-dashboard.css",
+    "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-DAoQiOVR.js",
+    "file": "assets/app-_BDsf6ZH.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true,
-    "dynamicImports": [
-      "resources/js/admin/users/user-list.js"
-    ]
+    "isEntry": true
   }
 }
